@@ -1,0 +1,11 @@
+.vs/
+.idea/
+
+bin/
+obj/
+
+*.swp
+*.swo
+*.swn
+
+*.user
