@@ -1,22 +1,22 @@
 ﻿using System;
-using Xunit;
 using DataStructures;
+using NUnit.Framework;
 using Collections = System.Collections.Generic;
 
 namespace Tests.DataStructures
 {
     public class ListTests
     {
-        [Fact]
+        [Test]
         public void ConstructorTest()
         {
             var list = new List<int>(0, Collections.Comparer<int>.Default);
             list.TrimExcess();
-            Assert.Equal(4, list.Capacity);
-            Assert.Equal(0, list.Count);
+            Assert.AreEqual(4, list.Capacity);
+            Assert.AreEqual(0, list.Count);
         }
         
-        [Fact]
+        [Test]
         public void AddTest()
         {
             var list = new List<int>();
@@ -26,10 +26,10 @@ namespace Tests.DataStructures
             list.Add(4);
             list.Add(5);
             
-            Assert.Equal(new int[] { 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 1, 2, 3, 4, 5 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void InsertTest()
         {
             var list = new List<int>();
@@ -40,10 +40,10 @@ namespace Tests.DataStructures
             list.Insert(2,3);
             list.Insert(4,5);
             
-            Assert.Equal(new int[] { 1, 2, 3, 4, 5, 6 }, list.ToArray());
+            Assert.AreEqual(new int[] { 1, 2, 3, 4, 5, 6 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void ElementAtTest()
         {
             var list = new List<int>();
@@ -56,10 +56,10 @@ namespace Tests.DataStructures
             list.Add(4);
             list.Add(5);
 
-            Assert.Equal(3, list.ElementAt(2));
+            Assert.AreEqual(3, list.ElementAt(2));
         }
 
-        [Fact]
+        [Test]
         public void ContainsTest()
         {
             var list = new List<int>();
@@ -75,7 +75,7 @@ namespace Tests.DataStructures
             Assert.True(list.Contains(3));
         }
 
-        [Fact]
+        [Test]
         public void RemoveTest()
         {
             var list = new List<int>();
@@ -90,16 +90,16 @@ namespace Tests.DataStructures
 
             list.Remove(3);
             
-            Assert.Equal(4, list.Count);
-            Assert.Equal(new int[] { 1, 2, 4, 5 }, list.ToArray());
+            Assert.AreEqual(4, list.Count);
+            Assert.AreEqual(new int[] { 1, 2, 4, 5 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void IndexOfTest()
         {
             var list = new List<int>();
             
-            Assert.Equal(-1, list.IndexOf(69));
+            Assert.AreEqual(-1, list.IndexOf(69));
             
             list.Add(1);
             list.Add(2);
@@ -107,12 +107,12 @@ namespace Tests.DataStructures
             list.Add(4);
             list.Add(5);
             
-            Assert.Equal(0, list.IndexOf(1));
-            Assert.Equal(-1, list.IndexOf(69));
-            Assert.Equal(4, list.IndexOf(5));
+            Assert.AreEqual(0, list.IndexOf(1));
+            Assert.AreEqual(-1, list.IndexOf(69));
+            Assert.AreEqual(4, list.IndexOf(5));
         }
 
-        [Fact]
+        [Test]
         public void ClearTest()
         {
             var list = new List<int>();
@@ -124,18 +124,18 @@ namespace Tests.DataStructures
 
             list.Clear();
             
-            Assert.Equal(Array.Empty<int>(), list.ToArray());
-            Assert.Equal(0, list.Count);
-            Assert.Equal(4, list.Capacity);
+            Assert.AreEqual(Array.Empty<int>(), list.ToArray());
+            Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(4, list.Capacity);
         }
 
-        [Fact]
+        [Test]
         public void TrimExcessTest()
         {
             var list = new List<int>();
             
             list.TrimExcess();
-            Assert.NotEqual(list.Count, list.Capacity);
+            Assert.AreNotEqual(list.Count, list.Capacity);
             
             list.Add(1);
             list.Add(2);
@@ -145,7 +145,7 @@ namespace Tests.DataStructures
 
             list.TrimExcess();
             
-            Assert.Equal(list.Count, list.Capacity);
+            Assert.AreEqual(list.Count, list.Capacity);
         }
     }
 }

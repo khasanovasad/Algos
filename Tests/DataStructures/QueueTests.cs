@@ -1,12 +1,12 @@
 ﻿using System;
 using DataStructures;
-using Xunit;
+using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
     public class QueueTests
     {
-        [Fact]
+        [Test]
         public void TestEnqueue()
         {
             var queue = new Queue<int>();
@@ -16,12 +16,12 @@ namespace Tests.DataStructures
             queue.Enqueue(3);
             queue.Enqueue(4);
 
-            Assert.Equal(5, queue.Count);
+            Assert.AreEqual(5, queue.Count);
             Assert.False(queue.IsEmpty);
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4 }, queue.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4 }, queue.ToArray());
         }
         
-        [Fact]
+        [Test]
         public void TestDequeue()
         {
             var queue = new Queue<int>();
@@ -31,20 +31,20 @@ namespace Tests.DataStructures
             queue.Enqueue(3);
             queue.Enqueue(4);
 
-            Assert.Equal(5, queue.Count);
+            Assert.AreEqual(5, queue.Count);
             
             queue.Dequeue();
-            Assert.Equal(4, queue.Count);
+            Assert.AreEqual(4, queue.Count);
 
             queue.Dequeue();
             queue.Dequeue();
             queue.Dequeue();
             queue.Dequeue();
-            Assert.Equal(new int[] { }, queue.ToArray());
+            Assert.AreEqual(new int[] { }, queue.ToArray());
             Assert.Throws<Exception>(() => queue.Dequeue());
         }
 
-        [Fact]
+        [Test]
         public void TestContains()
         {
             var queue = new Queue<int>();

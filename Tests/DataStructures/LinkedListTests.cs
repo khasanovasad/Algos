@@ -1,12 +1,12 @@
 using System;
 using DataStructures;
-using Xunit;
+using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
     public class LinkedListTests
     {
-        [Fact]
+        [Test]
         public void TestAddFirst()
         {
             var list = new LinkedList<int>();
@@ -15,10 +15,10 @@ namespace Tests.DataStructures
                 list.AddFirst(i);
             }
 
-            Assert.Equal(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }, list.ToArray());
+            Assert.AreEqual(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestAddLast()
         {
             var list = new LinkedList<int>();
@@ -27,10 +27,10 @@ namespace Tests.DataStructures
                 list.AddLast(i);
             }
 
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestAddBefore()
         {
             var list = new LinkedList<int>();
@@ -50,10 +50,10 @@ namespace Tests.DataStructures
                 walker = walker.Next;
             }
 
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestAddAfter()
         {
             var list = new LinkedList<int>();
@@ -73,10 +73,10 @@ namespace Tests.DataStructures
                 walker = walker.Next;
             }
 
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestClear()
         {
             var list = new LinkedList<int>();
@@ -87,13 +87,13 @@ namespace Tests.DataStructures
             list.AddLast(4);
             list.AddLast(5);
 
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
 
             list.Clear();
-            Assert.Equal(new int[] {}, list.ToArray());
+            Assert.AreEqual(new int[] {}, list.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestRemoveFirst()
         {
             var list = new LinkedList<int>();
@@ -105,13 +105,13 @@ namespace Tests.DataStructures
             list.AddLast(5);
 
             list.RemoveFirst();
-            Assert.Equal(new int[] { 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 1, 2, 3, 4, 5 }, list.ToArray());
 
             list.Clear();
             Assert.Throws<Exception>(() => list.RemoveFirst());
         }
 
-        [Fact]
+        [Test]
         public void TestRemoveLast()
         {
             var list = new LinkedList<int>();
@@ -123,13 +123,13 @@ namespace Tests.DataStructures
             list.AddLast(5);
 
             list.RemoveLast();
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4 }, list.ToArray());
 
             list.Clear();
             Assert.Throws<Exception>(() => list.RemoveLast());
         }
 
-        [Fact]
+        [Test]
         public void TestRemove()
         {
             var list = new LinkedList<int>();
@@ -145,13 +145,13 @@ namespace Tests.DataStructures
             while (walker?.Data != 69) { walker = walker.Prev; }
             list.Remove(walker);
 
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5 }, list.ToArray());
 
             list.Clear();
             Assert.Throws<Exception>(() => list.Remove(walker));
         }
 
-        [Fact]
+        [Test]
         public void TestContains()
         {
             var list = new LinkedList<int>();

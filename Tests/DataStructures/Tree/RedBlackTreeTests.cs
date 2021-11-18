@@ -1,13 +1,13 @@
 ﻿using System;
 using DataStructures.Tree;
-using Xunit;
+using NUnit.Framework;
 
 namespace Tests.DataStructures.Tree
 {
     public class RedBlackTreeTests
     {
-        // [Fact]
-        [Fact(Skip = "DUMMY TEST. NEEDS TO BE REWRITTEN.")]
+        [Test]
+        [Ignore("DUMMY TEST. NEEDS TO BE REWRITTEN")]
         public void RedBlackTreeTest()
         {
             var bst = new RedBlackTree<int>();
@@ -38,7 +38,7 @@ namespace Tests.DataStructures.Tree
 
             bst.PrintTree();
 
-            Assert.True(false);
+            Assert.Fail();
         }
     }
 }

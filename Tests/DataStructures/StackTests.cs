@@ -1,12 +1,12 @@
 using System;
 using DataStructures;
-using Xunit;
+using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
     public class StackTests
     {
-        [Fact]
+        [Test]
         public void TestPush()
         {
             var stack = new Stack<int>();
@@ -16,12 +16,12 @@ namespace Tests.DataStructures
             stack.Push(3);
             stack.Push(4);
 
-            Assert.Equal(5, stack.Count);
+            Assert.AreEqual(5, stack.Count);
             Assert.False(stack.IsEmpty);
-            Assert.Equal(new int[] { 0, 1, 2, 3, 4 }, stack.ToArray());
+            Assert.AreEqual(new int[] { 0, 1, 2, 3, 4 }, stack.ToArray());
         }
 
-        [Fact]
+        [Test]
         public void TestPop()
         {
             var stack = new Stack<int>();
@@ -31,20 +31,20 @@ namespace Tests.DataStructures
             stack.Push(3);
             stack.Push(4);
 
-            Assert.Equal(5, stack.Count);
+            Assert.AreEqual(5, stack.Count);
             
             stack.Pop();
-            Assert.Equal(4, stack.Count);
+            Assert.AreEqual(4, stack.Count);
 
             stack.Pop();
             stack.Pop();
             stack.Pop();
             stack.Pop();
-            Assert.Equal(new int[] { }, stack.ToArray());
+            Assert.AreEqual(new int[] { }, stack.ToArray());
             Assert.Throws<Exception>(() => stack.Pop());
         }
 
-        [Fact]
+        [Test]
         public void TestContains()
         {
             var stack = new Stack<int>();

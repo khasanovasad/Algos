@@ -1,11 +1,11 @@
 using DesignPatterns;
-using Xunit;
+using NUnit.Framework;
 
 namespace Tests.DesignPatterns
 {
     public class SingletonTests
     {
-        [Fact]
+        [Test]
         public void Test()
         {
             var instance1 = Singleton.Instance;
@@ -13,7 +13,7 @@ namespace Tests.DesignPatterns
 
             Assert.NotNull(instance1);
             Assert.NotNull(instance2);
-            Assert.Same(instance1, instance2);
+            Assert.AreSame(instance1, instance2);
         }
     }
 }
