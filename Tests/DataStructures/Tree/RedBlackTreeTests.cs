@@ -6,8 +6,8 @@ namespace Tests.DataStructures.Tree
 {
     public class RedBlackTreeTests
     {
-        [Fact]
-        // [Fact(Skip = "DUMMY TEST. NEEDS TO BE REWRITTEN.")]
+        // [Fact]
+        [Fact(Skip = "DUMMY TEST. NEEDS TO BE REWRITTEN.")]
         public void RedBlackTreeTest()
         {
             var bst = new RedBlackTree<int>();
