@@ -293,7 +293,7 @@ namespace DataStructures.Tree
                     }
                     else
                     {
-                        currentNode.Color = NodeColor.Red;
+                        currentNode.Color = NodeColor.Black;
                         DeleteNodeAndFixup(currentNode, true);
 
                         // invalidation
@@ -427,7 +427,8 @@ namespace DataStructures.Tree
                 {
                     if (currentNode.Parent.Color == NodeColor.Red)
                     {
-                        currentNode.Parent.Color = NodeColor.Black;
+                        // Commented this out because it was violating the black height of the tree:
+                        // currentNode.Parent.Color = NodeColor.Black;
                         isCurrentNodeDoubleBlack = false;
                     }
                     else if (currentNode.Parent.Color == NodeColor.Black)
