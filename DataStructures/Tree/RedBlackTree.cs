@@ -182,19 +182,380 @@ namespace DataStructures.Tree
             }
         }
 
-        public void Delete(T toBeDeleted)
+        public bool Delete(T toBeDeleted)
         {
-            DeleteInternal(_root, toBeDeleted);
+            if (_root is null)
+            {
+                return false; 
+            }
+
+            Node<T> currentNode = _root;
+
+            while (currentNode is not null)
+            {
+                if (_comparer.Compare(toBeDeleted, currentNode.Key) < 0)
+                {
+                    currentNode = currentNode.Left;
+                }
+                else if (_comparer.Compare(toBeDeleted, currentNode.Key) > 0)
+                {
+                    currentNode = currentNode.Right;
+                }
+                else
+                {
+                    if (currentNode.Left is not null)
+                    {
+                        // Find the largest node in the left subtree
+                        Node<T> subtreeNode = currentNode.Left;
+                        while (subtreeNode.Right is not null)
+                        {
+                            subtreeNode = subtreeNode.Right;
+                        }
+
+                        // swapping
+                        T tmp = currentNode.Key;
+                        currentNode.Key = subtreeNode.Key;
+                        subtreeNode.Key = tmp;
+
+                        DeleteNodeAndFixup(subtreeNode, false);
+
+                        // invalidation
+                        subtreeNode.Left = null;
+                        subtreeNode.Right = null;
+                        subtreeNode.Parent = null;
+
+                        Node<T> copyCurrentNode = new Node<T>(currentNode.Key)
+                        {
+                            Left = currentNode.Left,
+                            Right = currentNode.Right,
+                            Parent = currentNode.Parent,
+                            Color = currentNode.Color,
+                        };
+
+                        if (copyCurrentNode.Left is not null) { copyCurrentNode.Left.Parent = copyCurrentNode; }
+                        if (copyCurrentNode.Right is not null) { copyCurrentNode.Right.Parent = copyCurrentNode; }
+
+                        if (copyCurrentNode.Parent is not null)
+                        {
+                            if (copyCurrentNode.Parent.Left == currentNode) { copyCurrentNode.Parent.Left = copyCurrentNode; }
+                            else { copyCurrentNode.Parent.Right = copyCurrentNode; }
+                        }
+                        else { _root = copyCurrentNode; }
+
+                        // invalidation
+                        currentNode.Left = null;
+                        currentNode.Right = null;
+                        currentNode.Parent = null;
+                    }
+                    else if (currentNode.Right is not null)
+                    {
+                        // Find the largest node in the left subtree
+                        Node<T> subtreeNode = currentNode.Right;
+                        while (subtreeNode.Left is not null)
+                        {
+                            subtreeNode = subtreeNode.Right;
+                        }
+
+                        // swapping
+                        T tmp = currentNode.Key;
+                        currentNode.Key = subtreeNode.Key;
+                        subtreeNode.Key = tmp;
+
+                        DeleteNodeAndFixup(subtreeNode, false);
+
+                        // invalidation
+                        subtreeNode.Left = null;
+                        subtreeNode.Right = null;
+                        subtreeNode.Parent = null;
+
+                        Node<T> copyCurrentNode = new Node<T>(currentNode.Key)
+                        {
+                            Left = currentNode.Left,
+                            Right = currentNode.Right,
+                            Parent = currentNode.Parent,
+                            Color = currentNode.Color,
+                        };
+
+                        if (copyCurrentNode.Left is not null) { copyCurrentNode.Left.Parent = copyCurrentNode; }
+                        if (copyCurrentNode.Right is not null) { copyCurrentNode.Right.Parent = copyCurrentNode; }
+
+                        if (copyCurrentNode.Parent is not null)
+                        {
+                            if (copyCurrentNode.Parent.Left == currentNode) { copyCurrentNode.Parent.Left = copyCurrentNode; }
+                            else { copyCurrentNode.Parent.Right = copyCurrentNode; }
+                        }
+                        else { _root = copyCurrentNode; }
+
+                        // invalidation
+                        currentNode.Left = null;
+                        currentNode.Right = null;
+                        currentNode.Parent = null;
+                    }
+                    else
+                    {
+                        currentNode.Color = NodeColor.Red;
+                        DeleteNodeAndFixup(currentNode, true);
+
+                        // invalidation
+                        currentNode.Left = null;
+                        currentNode.Right = null;
+                        currentNode.Parent = null;
+                    }
+
+                    return true;
+                }
+            }
+            return false;
         }
 
-        private void DeleteInternal(Node<T> node, T toBeDeleted)
+        private void DeleteNodeAndFixup(Node<T> toBeDeleted, bool isToBeDeletedNull)
         {
-            throw new NotImplementedException();
-        }
+            Node<T> child = null;
+            bool isChildNull = false;
 
-        private void DeletionFixup(Node<T> node)
-        {
-            throw new NotImplementedException();
+            if (toBeDeleted == _root)
+            {
+                _root = null;
+                return;
+            }
+
+            if (!isToBeDeletedNull)
+            {
+                if (toBeDeleted.Left is not null)
+                {
+                    isChildNull = false;
+                    child = toBeDeleted.Left;
+
+                    if (toBeDeleted.Parent.Left == toBeDeleted)
+                    {
+                        toBeDeleted.Parent.Left = child;
+                    }
+                    else if (toBeDeleted.Parent.Right == toBeDeleted)
+                    {
+                        toBeDeleted.Parent.Right = child;
+                    }
+
+                    child.Parent = toBeDeleted.Parent;
+
+                    // CASE 1: If one of the nodes is red, the replaced child is marked black
+                    // and no more balancing is needed.
+                    if (child.Color == NodeColor.Red || toBeDeleted.Color == NodeColor.Red)
+                    {
+                        child.Color = NodeColor.Black;
+                        return;
+                    }
+                }
+                else if (toBeDeleted.Right is not null)
+                {
+                    isChildNull = false;
+                    child = toBeDeleted.Right;
+
+                    if (toBeDeleted.Parent.Left == toBeDeleted)
+                    {
+                        toBeDeleted.Parent.Left = child;
+                    }
+                    else if (toBeDeleted.Parent.Right == toBeDeleted)
+                    {
+                        toBeDeleted.Parent.Right = child;
+                    }
+
+                    child.Parent = toBeDeleted.Parent;
+
+                    // CASE 1: If one of the nodes is red, the replaced child is marked black
+                    // and no more balancing is needed.
+                    if (child.Color == NodeColor.Red || toBeDeleted.Color == NodeColor.Red)
+                    {
+                        child.Color = NodeColor.Black;
+                        return;
+                    }
+                }
+                else // toBeDeleted has no children
+                {
+                    // CASE 1: If one of the nodes is red, the replaced child is marked black
+                    // and no more balancing is needed.
+                    if (toBeDeleted.Color == NodeColor.Red)
+                    {
+                        if (toBeDeleted.Parent.Left == toBeDeleted)
+                        {
+                            toBeDeleted.Parent.Left = null;
+                        }
+                        else if (toBeDeleted.Parent.Right == toBeDeleted)
+                        {
+                            toBeDeleted.Parent.Right = null;
+                        }
+
+                        toBeDeleted.Parent = null;
+                        return;
+                    }
+
+                    isChildNull = true;
+                    child = toBeDeleted;
+                    child.Color = NodeColor.Black;
+                }
+            }
+            else
+            {
+                isChildNull = true;
+                child = toBeDeleted;
+                child.Color = NodeColor.Black;
+            }
+
+            // CASE 2: If we are here then both (child & toBeDeleted) are black.
+            // In this case the child is considered as "double black".
+            Node<T> currentNode = child;
+            bool isCurrentNodeDoubleBlack = true;
+
+            while (isCurrentNodeDoubleBlack && currentNode != _root)
+            {
+                Node<T> sibling = null;
+                bool isSiblingLeftChild = false;
+
+                if (currentNode.Parent.Left == currentNode)
+                {
+                    sibling = currentNode.Parent.Right;
+                    isSiblingLeftChild = false;
+                }
+                else if (currentNode.Parent.Right == currentNode)
+                {
+                    sibling = currentNode.Parent.Left;
+                    isSiblingLeftChild = true;
+                }
+
+                // if sibling is null, then it is black
+                // and both of its children is black
+                if (sibling is null)
+                {
+                    if (currentNode.Parent.Color == NodeColor.Red)
+                    {
+                        currentNode.Parent.Color = NodeColor.Black;
+                        isCurrentNodeDoubleBlack = false;
+                    }
+                    else if (currentNode.Parent.Color == NodeColor.Black)
+                    {
+                        currentNode = currentNode.Parent;
+                    }
+                }
+                else if (sibling.Color == NodeColor.Black)
+                {
+                    bool isLeftChildRed = false;
+                    bool isRightChildRed = false;
+                    if (sibling.Left is not null && sibling.Left.Color == NodeColor.Red)
+                    {
+                        isLeftChildRed = true;
+                    }
+                    if (sibling.Right is not null && sibling.Right.Color == NodeColor.Red)
+                    {
+                        isRightChildRed = true;
+                    }
+
+                    // CASE 2.1: If sibling is black and at least one of the
+                    // sibling's children is red, we need to perform rotations.
+                    if (isLeftChildRed || isRightChildRed)
+                    {
+                        if (isSiblingLeftChild)
+                        {
+                            if (isRightChildRed && !isLeftChildRed) // Left Right Case
+                            {
+                                LeftRotation(sibling);
+                                RightRotation(currentNode.Parent);
+                            }
+                            else if (isLeftChildRed && !isRightChildRed) // Left Left Case
+                            {
+                                RightRotation(currentNode.Parent);
+                            }
+                        }
+                        else
+                        {
+                            if (isLeftChildRed && !isRightChildRed) // Right Left Case
+                            {
+                                RightRotation(sibling);
+                                LeftRotation(currentNode.Parent);
+                            }
+                            else if (isRightChildRed && !isLeftChildRed) // Right Right Case
+                            {
+                                LeftRotation(currentNode.Parent);
+                            }
+                        }
+
+                        // After rotation, everything is okay.
+                        isCurrentNodeDoubleBlack = false;
+                    }
+                    // CASE 2.2: Both children are black
+                    else
+                    {
+                        sibling.Color = NodeColor.Red;
+
+                        // if parent is red, we recolor it and end the balancing
+                        // because red + double black = single black
+                        if (currentNode.Parent.Color == NodeColor.Red)
+                        {
+                            currentNode.Parent.Color = NodeColor.Black;
+                            isCurrentNodeDoubleBlack = false;
+                        }
+                        // if parent is black it is not double black (black + black = double black)
+                        else if (currentNode.Parent.Color == NodeColor.Black)
+                        {
+                            currentNode = currentNode.Parent;
+                        }
+
+                        // here we stop using child anymore so
+                        // if it was null node we need to remove it
+                        if (isChildNull)
+                        {
+                            if (child.Parent.Left == child)
+                            {
+                                child.Parent.Left = null;
+                            }
+                            else if (child.Parent.Right == child)
+                            {
+                                child.Parent.Right = null;
+                            }
+
+                            // invalidation
+                            child.Left = null;
+                            child.Right = null;
+                            child.Parent = null;
+
+                            isChildNull = false;
+                        }
+                    }
+                }
+                else if (sibling.Color == NodeColor.Red)
+                {
+                    // recolor sibling & parent
+                    sibling.Color = NodeColor.Black;
+                    currentNode.Parent.Color = NodeColor.Red;
+
+                    if (isSiblingLeftChild) // Left Left case
+                    {
+                        RightRotation(currentNode.Parent);
+                    }
+                    else // Right Right case
+                    {
+                        LeftRotation(currentNode.Parent);
+                    }
+                }
+            }
+
+            // removing child node if it was considered a null node
+            if (isChildNull)
+            {
+                if (child.Parent.Left == child)
+                {
+                    child.Parent.Left = null;
+                }
+                else if (child.Parent.Right == child)
+                {
+                    child.Parent.Right = null;
+                }
+
+                // invalidation
+                child.Left = null;
+                child.Right = null;
+                child.Parent = null;
+
+                isChildNull = false;
+            }
         }
 
         private void LeftRotation(Node<T> node)

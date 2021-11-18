@@ -45,9 +45,9 @@ namespace Tests.DataStructures.Tree
             
             bst.PrintTree();
 
-            // bst.Delete(3);
+            bst.Delete(15);
 
-            // bst.PrintTree();
+            bst.PrintTree();
 
             Assert.True(false);
         }
