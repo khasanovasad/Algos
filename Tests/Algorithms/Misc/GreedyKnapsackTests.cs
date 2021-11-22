@@ -1,8 +1,8 @@
 using System;
-using Algorithms;
+using Algorithms.Misc;
 using NUnit.Framework;
 
-namespace Tests.Algorithms
+namespace Tests.Algorithms.Misc
 {
     public class GreedyKnapsackTests
     {

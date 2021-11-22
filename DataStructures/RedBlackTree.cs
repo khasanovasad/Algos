@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataStructures.Tree
+namespace DataStructures
 {
     public class RedBlackTree<T>
     {

@@ -1,4 +1,4 @@
-﻿using Utilities;
+﻿using System;
 
 namespace Algorithms.Sorting
 {
@@ -14,7 +14,9 @@ namespace Algorithms.Sorting
             {
                 if (array[j] < pivot)
                 {
-                    Utils.Swap(ref array[++i], ref array[j]);
+                    var swapTmp = array[++i];
+                    array[i] = array[j];
+                    array[j] = swapTmp;
                 } 
             }
             

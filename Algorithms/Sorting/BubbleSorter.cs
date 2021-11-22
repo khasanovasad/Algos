@@ -1,5 +1,4 @@
 using System;
-using Utilities;
 
 namespace Algorithms.Sorting
 {
@@ -13,7 +12,7 @@ namespace Algorithms.Sorting
                 {
                     if (array[j] > array[j + 1])
                     {
-                        Utils.Swap(ref array[j], ref array[j + 1]);
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
                     }
                 }
             }

@@ -7,7 +7,7 @@ namespace Tests.DataStructures
     public class LinkedListTests
     {
         [Test]
-        public void TestAddFirst()
+        public void LinkedList_AddFirst_Should_Add_Element_To_The_Head()
         {
             var list = new LinkedList<int>();
             for (int i = 0; i < 10; ++i)
@@ -19,7 +19,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestAddLast()
+        public void LinkedList_AddLast_Should_Add_Element_To_The_Tail()
         {
             var list = new LinkedList<int>();
             for (int i = 0; i < 10; ++i)
@@ -31,7 +31,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestAddBefore()
+        public void LinkedList_AddBefore_Should_Add_Element_Before_The_Given_Node()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -54,7 +54,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestAddAfter()
+        public void LinkedList_AddAfter_Should_Add_Element_After_The_Given_Node()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -77,7 +77,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestClear()
+        public void LinkedList_Clear_Should_Clear_The_LinkedList()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -94,7 +94,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestRemoveFirst()
+        public void LinkedList_RemoveFirst_Should_Remove_The_First_Element()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -112,7 +112,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestRemoveLast()
+        public void LinkedList_RemoveLast_Should_Remove_The_Last_Element()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -130,7 +130,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestRemove()
+        public void LinkedList_Remove_Should_Remove_The_Node_With_Certain_Value()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);
@@ -152,7 +152,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestContains()
+        public void LinkedList_Contains_Should_Return_The_Correct_Value()
         {
             var list = new LinkedList<int>();
             list.AddLast(0);

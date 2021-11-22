@@ -6,7 +6,7 @@ namespace Tests.DesignPatterns
     public class SingletonTests
     {
         [Test]
-        public void Test()
+        public void Singleton_Should_Only_Exists_One_Instance()
         {
             var instance1 = Singleton.Instance;
             var instance2 = Singleton.Instance;

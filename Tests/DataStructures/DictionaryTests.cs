@@ -6,7 +6,7 @@ namespace Tests.DataStructures
     public class DictionaryTests
     {
         [Test]
-        public void TestAdd()
+        public void Dictionary_Add_Should_Add_Item_To_The_HashTable()
         {
             var dict = new Dictionary<int, string>();
             for (int i = 1; i <= 10; ++i)
@@ -22,7 +22,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void IndexOperatorTest()
+        public void Dictionary_IndexOperator_Should_Return_Desired_Value_According_To_The_Key()
         {
             var dict = new Dictionary<int, string>();
             for (int i = 1; i <= 10; ++i)

@@ -8,7 +8,7 @@ namespace Tests.DataStructures
     public class ListTests
     {
         [Test]
-        public void ConstructorTest()
+        public void List_Ctor()
         {
             var list = new List<int>(0, Collections.Comparer<int>.Default);
             list.TrimExcess();
@@ -17,7 +17,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void AddTest()
+        public void List_Add_Should_Append_The_List()
         {
             var list = new List<int>();
             list.Add(1);
@@ -30,7 +30,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void InsertTest()
+        public void List_Insert_Should_Insert_Element_At_Desired_Position()
         {
             var list = new List<int>();
             list.Add(2);
@@ -44,7 +44,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void ElementAtTest()
+        public void List_ElementAt_Should_Return_The_Desired_Value()
         {
             var list = new List<int>();
 
@@ -60,7 +60,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void ContainsTest()
+        public void List_Contains_Return_True_If_Value_Exists_In_The_List()
         {
             var list = new List<int>();
             
@@ -76,7 +76,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void RemoveTest()
+        public void List_Remove_Should_Delete_An_Element_From_The_List()
         {
             var list = new List<int>();
 
@@ -95,7 +95,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void IndexOfTest()
+        public void List_IndexOf_Returns_The_Correct_Index_Of_The_Value_In_The_List()
         {
             var list = new List<int>();
             
@@ -113,7 +113,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void ClearTest()
+        public void List_Clear_Should_Remove_All_Elements()
         {
             var list = new List<int>();
             list.Add(1);
@@ -130,7 +130,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TrimExcessTest()
+        public void List_TrimExcess_Trims_The_Capacity_To_The_Length()
         {
             var list = new List<int>();
             

@@ -1,4 +1,4 @@
-﻿using Utilities;
+﻿using System;
 
 namespace Algorithms.Sorting
 {
@@ -17,7 +17,7 @@ namespace Algorithms.Sorting
                     } 
                 }
 
-                Utils.Swap(ref array[i], ref array[minIdx]);
+                (array[i], array[minIdx]) = (array[minIdx], array[i]);
             } 
         }
     }

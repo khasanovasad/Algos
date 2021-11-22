@@ -7,7 +7,7 @@ namespace Tests.DataStructures
     public class QueueTests
     {
         [Test]
-        public void TestEnqueue()
+        public void Queue_Enqueue_Adds_Elements_To_The_Queue()
         {
             var queue = new Queue<int>();
             queue.Enqueue(0);
@@ -22,7 +22,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void TestDequeue()
+        public void Queue_Dequeue_Removes_Elements_From_The_Queue()
         {
             var queue = new Queue<int>();
             queue.Enqueue(0);
@@ -45,7 +45,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestContains()
+        public void Queue_Contains_Returns_The_Correct_Value_Accordingly()
         {
             var queue = new Queue<int>();
             queue.Enqueue(0);

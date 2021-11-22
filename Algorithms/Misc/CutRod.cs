@@ -1,6 +1,6 @@
 using System;
 
-namespace Algorithms
+namespace Algorithms.Misc
 {
     /// Problem represented in Section 15.1 of CLRS book
     public class CutRod

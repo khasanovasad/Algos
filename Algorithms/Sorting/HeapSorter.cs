@@ -1,5 +1,4 @@
 ﻿using System;
-using Utilities;
 
 namespace Algorithms.Sorting
 {
@@ -24,7 +23,7 @@ namespace Algorithms.Sorting
 
             if (largest != i)
             {
-                Utils.Swap(ref array[i], ref array[largest]);
+                (array[i], array[largest]) = (array[largest], array[i]);
                 MaxHeapify(array, size, largest);
             }
         }
@@ -42,7 +41,7 @@ namespace Algorithms.Sorting
             BuildMaxHeap(array);
             for (int i = array.Length - 1; i >= 0; --i)
             {
-                Utils.Swap(ref array[0], ref array[i]);
+                (array[i], array[0]) = (array[0], array[i]);
                 MaxHeapify(array, i, 0);
             }
         }

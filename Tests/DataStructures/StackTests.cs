@@ -7,7 +7,7 @@ namespace Tests.DataStructures
     public class StackTests
     {
         [Test]
-        public void TestPush()
+        public void Stack_Push_Should_Add_Element_To_The_Stack()
         {
             var stack = new Stack<int>();
             stack.Push(0);
@@ -22,7 +22,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestPop()
+        public void Stack_Pop_Should_Remove_Element_From_The_Top_Of_The_Stack()
         {
             var stack = new Stack<int>();
             stack.Push(0);
@@ -45,7 +45,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void TestContains()
+        public void Stack_Contains_Should_Return_The_Correct_Value_Accordingly()
         {
             var stack = new Stack<int>();
             stack.Push(0);

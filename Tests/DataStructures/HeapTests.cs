@@ -9,7 +9,7 @@ namespace Tests.DataStructures
         private record Contender(string Name, int Rank);
 
         [Test]
-        public void CustomComparerTest()
+        public void Heap_ToArray_Should_Return_Items_Sorted_With_Custom_Comparer()
         {
             var customComparer = Comparer<Contender>.Create((a, b) => Comparer<int>.Default.Compare(a.Rank, b.Rank));
             var heap = new Heap<Contender>(isMaxHeap: false, comparer: customComparer);
@@ -35,7 +35,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void InsertMaxHeapTest()
+        public void Heap_Insert_Should_Create_A_Correct_MaxHeap()
         {
             var heap = new Heap<int>(isMaxHeap: true);
             heap.Insert(3);
@@ -49,7 +49,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void InsertMinHeapTest()
+        public void Heap_Insert_Should_Create_A_Correct_MinHeap()
         {
             var heap = new Heap<int>(isMaxHeap: false);
             heap.Insert(3);
@@ -63,7 +63,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void RemoveMinHeapTest()
+        public void Heap_Remove_Should_Remove_Element_Form_MinHeap()
         {
             var heap = new Heap<int>(isMaxHeap: false);
             heap.Insert(3);
@@ -78,7 +78,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void RemoveMaxHeapTest()
+        public void Heap_Remove_Should_Remove_Element_Form_MaxHeap()
         {
             var heap = new Heap<int>(isMaxHeap: true);
             heap.Insert(3);
@@ -93,7 +93,7 @@ namespace Tests.DataStructures
         }
 
         [Test]
-        public void PeekTest()
+        public void Heap_Peek_Should_Return_The_Top_Element()
         {
             var heap = new Heap<int>(isMaxHeap: true);
             heap.Insert(3);
@@ -108,7 +108,7 @@ namespace Tests.DataStructures
         }
         
         [Test]
-        public void ExtractTest()
+        public void Heap_Extract_Should_Extract_The_Top_Element()
         {
             var heap = new Heap<int>(isMaxHeap: false);
             heap.Insert(3);

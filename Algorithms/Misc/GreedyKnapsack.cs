@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Algorithms
+namespace Algorithms.Misc
 {
     public static class GreedyKnapsack
     {

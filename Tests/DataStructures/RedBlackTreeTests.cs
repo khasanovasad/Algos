@@ -1,25 +1,21 @@
-using System;
-using DataStructures.Tree;
+﻿using System;
+using DataStructures;
 using NUnit.Framework;
 
-namespace Tests.DataStructures.Tree
+namespace Tests.DataStructures
 {
-    public class BinarySearchTreeTests
+    public class RedBlackTreeTests
     {
         [Test]
         [Ignore("DUMMY TEST. NEEDS TO BE REWRITTEN")]
-        public void BinarySearchTreeTest()
+        public void RedBlackTreeTest()
         {
-            var bst = new BinarySearchTree<int>();
+            var bst = new RedBlackTree<int>();
 
-            bst.Insert(8);
-            bst.Insert(3);
-            bst.Insert(10);
-            bst.Insert(1);
-            bst.Insert(6);
-            bst.Insert(4);
-            bst.Insert(7);
-            bst.Insert(14);
+            for (int i = 1; i <= 15; ++i)
+            {
+                bst.Insert(i);
+            }
             
             bst.Inorder(key =>
             {
@@ -38,7 +34,7 @@ namespace Tests.DataStructures.Tree
             
             bst.PrintTree();
 
-            bst.Delete(3);
+            bst.Delete(15);
 
             bst.PrintTree();
 
