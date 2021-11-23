@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns
+namespace DesignPatterns.Creational
 {
     public interface IButton
     {

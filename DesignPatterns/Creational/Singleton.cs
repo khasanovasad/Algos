@@ -17,7 +17,7 @@
 
 using System;
 
-namespace DesignPatterns
+namespace DesignPatterns.Creational
 {
     public class Singleton
     {

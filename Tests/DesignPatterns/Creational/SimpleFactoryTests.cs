@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
-using DesignPatterns;
+using DesignPatterns.Creational;
 
-namespace Tests.DesignPatterns
+namespace Tests.DesignPatterns.Creational
 {
     public class SimpleFactoryTests
     {
