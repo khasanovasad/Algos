@@ -1,3 +1,16 @@
+/**
+ * GoF DEFINITION:
+ * Separate the construction of a complex object from its representation so that the same 
+ * construction processes can create different representations.
+ *
+ * CONCEPT:
+ * The Builder pattern is useful for creating complex objects that have multiple parts. 
+ * The object creation process should be independent of these parts; in other words, 
+ * the construction process does not care how these parts are assembled. In addition, as 
+ * per the definition, you should be able to use the same construction process to create 
+ * different representations of the objects.
+ */
+
 using System;
 
 namespace DesignPatterns
