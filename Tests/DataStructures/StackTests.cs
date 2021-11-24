@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
+    [TestFixture]
     public class StackTests
     {
         [Test]

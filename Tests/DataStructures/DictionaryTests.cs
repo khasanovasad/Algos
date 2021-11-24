@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
+    [TestFixture]
     public class DictionaryTests
     {
         [Test]

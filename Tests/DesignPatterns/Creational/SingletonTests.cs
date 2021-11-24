@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.DesignPatterns.Creational
 {
+    [TestFixture]
     public class SingletonTests
     {
         [Test]

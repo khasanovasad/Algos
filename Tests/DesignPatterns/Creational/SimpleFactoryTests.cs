@@ -4,6 +4,7 @@ using DesignPatterns.Creational;
 
 namespace Tests.DesignPatterns.Creational
 {
+    [TestFixture]
     public class SimpleFactoryTests
     {
         [Test]

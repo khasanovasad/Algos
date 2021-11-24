@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Tests.DataStructures
 {
+    [TestFixture]
     public class HeapTests
     {
         private record Contender(string Name, int Rank);

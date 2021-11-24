@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Tests.Algorithms.Misc
 {
+    [TestFixture]
     public class CutRodTests
     {
         [Test]

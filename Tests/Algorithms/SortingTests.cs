@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace Tests.Algorithms
 {
+    [TestFixture]
     public class SortingTests
     {
         private readonly int[] _array = new int[15];

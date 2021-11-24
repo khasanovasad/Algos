@@ -5,6 +5,7 @@ using Collections = System.Collections.Generic;
 
 namespace Tests.DataStructures
 {
+    [TestFixture]
     public class ListTests
     {
         [Test]
