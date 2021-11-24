@@ -41,7 +41,6 @@ namespace DesignPatterns.Structural
 
         public LoginServiceProxy(string currentUser)
         {
-            _users.AddRange(new string[] { "fredrick", "alejandro", "alfonso", "dominic" });
             CurrentUser = currentUser;
         }
 
