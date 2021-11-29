@@ -9,7 +9,7 @@ namespace Tests.DesignPatterns.Behavioural
     public class MediatorTests
     {
         [Test]
-        public void Mediator_Test()
+        public void Mediator_Test_Message_SendAndReceive()
         {
             const string expectedOutput = "[Chris] posts: Hello, Rocky. Can we do a collab?\n\n[Rocky] posts: Hello, Chris. Yes. Absolutely!\n\n";
 
