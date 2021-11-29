@@ -9,7 +9,7 @@ namespace Tests.DesignPatterns.Behavioural
     public class StateTests
     {
         [Test]
-        public void State_Test()
+        public void State_Should_Change_Or_Not_Change_State_According_To_The_Current_State()
         {
             const string expectedOutput = "TV was off already. No state change.\n\nTV is off. No state change.\n\nTV was off. Going from OFF state to ON state.\n\nTV was already ON. No state change.\n\nTV was ON. Going from ON state to MUTE state.\n\nTV was already MUTE. No state change.\n\nTV was MUTE. Going from MUTE state to OFF state.\n\n";
 
