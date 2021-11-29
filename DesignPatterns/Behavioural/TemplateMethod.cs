@@ -1,4 +1,18 @@
-﻿using System;
+﻿/**
+ * GoF DEFINITION:
+ * Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
+ * Template method lets subclasses redefine certain steps of an algorithm without 
+ * changing the algorithm’s structure.
+ * 
+ * CONCEPT:
+ * Using this pattern, you begin with the minimum or essential structure of an algorithm. 
+ * Then you defer some responsibilities to the subclasses. As a result, the derived class can 
+ * redefine some steps of an algorithm without changing the flow of the algorithm.
+ * Simply, this design pattern is useful when you implement a multistep algorithm but 
+ * allow customization through subclasses. 
+ */
+
+using System;
 using System.Text;
 
 namespace DesignPatterns.Behavioural
