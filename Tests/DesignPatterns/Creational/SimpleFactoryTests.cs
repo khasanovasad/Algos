@@ -2,33 +2,32 @@ using System;
 using NUnit.Framework;
 using DesignPatterns.Creational;
 
-namespace Tests.DesignPatterns.Creational
+namespace Tests.DesignPatterns.Creational;
+
+[TestFixture]
+public class SimpleFactoryTests
 {
-    [TestFixture]
-    public class SimpleFactoryTests
+    [Test]
+    public void SimpleFactory_CreateButton_Should_Create_AndroidButton()
     {
-        [Test]
-        public void SimpleFactory_CreateButton_Should_Create_AndroidButton()
-        {
-            const string buttonType = "android";
-            var simpleFactory = new SimpleFactory();
+        const string buttonType = "android";
+        var simpleFactory = new SimpleFactory();
 
-            var button = simpleFactory.CreateButton(buttonType);
-            var result = button.Click();
+        var button = simpleFactory.CreateButton(buttonType);
+        var result = button.Click();
 
-            Assert.AreEqual("Android button is clicked.", result);
-        }
+        Assert.AreEqual("Android button is clicked.", result);
+    }
 
-        [Test]
-        public void SimpleFactory_CreateButton_Should_Create_iOSButton()
-        {
-            const string buttonType = "ios";
-            var simpleFactory = new SimpleFactory();
+    [Test]
+    public void SimpleFactory_CreateButton_Should_Create_iOSButton()
+    {
+        const string buttonType = "ios";
+        var simpleFactory = new SimpleFactory();
 
-            var button = simpleFactory.CreateButton(buttonType);
-            var result = button.Click();
+        var button = simpleFactory.CreateButton(buttonType);
+        var result = button.Click();
 
-            Assert.AreEqual("iOS button is clicked.", result);
-        }
+        Assert.AreEqual("iOS button is clicked.", result);
     }
 }

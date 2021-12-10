@@ -14,47 +14,46 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns.Creational
+namespace DesignPatterns.Creational;
+
+public interface IButton
 {
-    public interface IButton
+    string Click();
+}
+
+public class AndroidButton : IButton
+{
+    public string Click()
     {
-        string Click();
+        return "Android button is clicked.";
     }
+}
 
-    public class AndroidButton : IButton
+public class iOSButton : IButton
+{
+    public string Click()
     {
-        public string Click()
-        {
-            return "Android button is clicked.";
-        }
+        return "iOS button is clicked.";
     }
+}
 
-    public class iOSButton : IButton
+public class SimpleFactory
+{
+    public IButton CreateButton(string buttonType)
     {
-        public string Click()
-        {
-            return "iOS button is clicked.";
-        }
-    }
+        IButton intendedButton = null;
 
-    public class SimpleFactory
-    {
-        public IButton CreateButton(string buttonType)
+        switch (buttonType)
         {
-            IButton intendedButton = null;
-
-            switch (buttonType)
-            {
-                case "android":
-                    intendedButton = new AndroidButton();
-                    break;
-                case "ios":
-                    intendedButton = new iOSButton();
-                    break;
-                default:
-                    throw new ArgumentException($"Unrecognized button type: {buttonType}.");
-            }
-            return intendedButton;
+            case "android":
+                intendedButton = new AndroidButton();
+                break;
+            case "ios":
+                intendedButton = new iOSButton();
+                break;
+            default:
+                throw new ArgumentException($"Unrecognized button type: {buttonType}.");
         }
+        return intendedButton;
     }
 }

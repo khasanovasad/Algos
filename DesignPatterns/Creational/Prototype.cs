@@ -18,24 +18,23 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns.Creational
+namespace DesignPatterns.Creational;
+
+public class SourceFile
 {
-    public class SourceFile
+    public int LinesOfCode => Content.Count;
+
+    public List<string> Content { get; set; }
+
+    public SourceFile()
     {
-        public int LinesOfCode => Content.Count;
+        Content = new List<string>();
+    }
 
-        public List<string> Content { get; set; }
-
-        public SourceFile()
-        {
-            Content = new List<string>();
-        }
-
-        // Shallow Copy.
-        // Deep Copy can also be implemented.
-        public SourceFile Clone()
-        {
-            return this.MemberwiseClone() as SourceFile;
-        }
+    // Shallow Copy.
+    // Deep Copy can also be implemented.
+    public SourceFile Clone()
+    {
+        return this.MemberwiseClone() as SourceFile;
     }
 }

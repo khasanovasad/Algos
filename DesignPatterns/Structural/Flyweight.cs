@@ -48,97 +48,96 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns.Structural
+namespace DesignPatterns.Structural;
+
+public interface IVehicle
 {
-    public interface IVehicle
+    public string AboutMe(string color);
+}
+
+public class Car : IVehicle
+{
+    private string _description;
+
+    public Car(string description)
     {
-        public string AboutMe(string color);
+        _description = description;
     }
 
-    public class Car : IVehicle
+    public string AboutMe(string color)
     {
-        private string _description;
+        return $"{_description} with {color} color.";
+    }
+}
 
-        public Car(string description)
-        {
-            _description = description;
-        }
+public class Bus : IVehicle
+{
+    private string _description;
 
-        public string AboutMe(string color)
-        {
-            return $"{_description} with {color} color.";
-        }
+    public Bus(string description)
+    {
+        _description = description;
     }
 
-    public class Bus : IVehicle
+    public string AboutMe(string color)
     {
-        private string _description;
+        return $"{_description} with {color} color.";
+    }
+}
 
-        public Bus(string description)
-        {
-            _description = description;
-        }
+public class FutureVehicle : IVehicle
+{
+    private string _description;
 
-        public string AboutMe(string color)
-        {
-            return $"{_description} with {color} color.";
-        }
+    public FutureVehicle(string description)
+    {
+        _description = description;
     }
 
-    public class FutureVehicle : IVehicle
+    public string AboutMe(string color)
     {
-        private string _description;
-
-        public FutureVehicle(string description)
-        {
-            _description = description;
-        }
-
-        public string AboutMe(string color)
-        {
-            return $"{_description} with blue color.";
-        }
+        return $"{_description} with blue color.";
     }
+}
 
-    public class VehicleFactory
-    {
-        private Dictionary<string, IVehicle> _vehicles = new Dictionary<string, IVehicle>();
+public class VehicleFactory
+{
+    private Dictionary<string, IVehicle> _vehicles = new Dictionary<string, IVehicle>();
         
-        public int TotalObjectsCreated
-        {
-            get { return _vehicles.Count; }
-        }
-
-        public IVehicle GetVehicleFromVehicleFactory(string vehicleType)
-        {
-            IVehicle vehicle = null;
-            if (_vehicles.ContainsKey(vehicleType))
-            {
-                vehicle = _vehicles[vehicleType];
-            }
-            else
-            {
-                switch (vehicleType)
-                {
-                    case "car":
-                        vehicle = new Car("One car is created");
-                        _vehicles.Add("car", vehicle);
-                        break;
-                    case "bus":
-                        vehicle = new Bus("One bus is created");
-                        _vehicles.Add("bus", vehicle);
-                        break;
-                    case "future":
-                        vehicle = new FutureVehicle("Vehicle 2050 is created");
-                        _vehicles.Add("future", vehicle);
-                        break;
-                    default:
-                        throw new ArgumentException("Vehicle Factory can give cars and busses only.");
-                }
-            }
-
-            return vehicle;
-        }
-
+    public int TotalObjectsCreated
+    {
+        get { return _vehicles.Count; }
     }
+
+    public IVehicle GetVehicleFromVehicleFactory(string vehicleType)
+    {
+        IVehicle vehicle = null;
+        if (_vehicles.ContainsKey(vehicleType))
+        {
+            vehicle = _vehicles[vehicleType];
+        }
+        else
+        {
+            switch (vehicleType)
+            {
+                case "car":
+                    vehicle = new Car("One car is created");
+                    _vehicles.Add("car", vehicle);
+                    break;
+                case "bus":
+                    vehicle = new Bus("One bus is created");
+                    _vehicles.Add("bus", vehicle);
+                    break;
+                case "future":
+                    vehicle = new FutureVehicle("Vehicle 2050 is created");
+                    _vehicles.Add("future", vehicle);
+                    break;
+                default:
+                    throw new ArgumentException("Vehicle Factory can give cars and busses only.");
+            }
+        }
+
+        return vehicle;
+    }
+
 }

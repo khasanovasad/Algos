@@ -19,62 +19,61 @@
 
 using System;
 
-namespace DesignPatterns.Behavioural
+namespace DesignPatterns.Behavioural;
+
+public interface IInstructorBehaviour
 {
-    public interface IInstructorBehaviour
-    {
-        public string AboutMe();
-    }
+    public string AboutMe();
+}
 
-    public class TeachesOS : IInstructorBehaviour
+public class TeachesOS : IInstructorBehaviour
+{
+    public string AboutMe()
     {
-        public string AboutMe()
-        {
-            return "Instructor, now, teaches Operating Systems.";
-        }
+        return "Instructor, now, teaches Operating Systems.";
     }
+}
 
-    public class TeachesDBMS : IInstructorBehaviour
+public class TeachesDBMS : IInstructorBehaviour
+{
+    public string AboutMe()
     {
-        public string AboutMe()
-        {
-            return "Instructor, now, teaches Database Management Systems.";
-        }
+        return "Instructor, now, teaches Database Management Systems.";
     }
+}
 
-    public class TeachesDSA : IInstructorBehaviour
+public class TeachesDSA : IInstructorBehaviour
+{
+    public string AboutMe()
     {
-        public string AboutMe()
-        {
-            return "Instructor, now, teaches Data Structures and Algorithms.";
-        }
+        return "Instructor, now, teaches Data Structures and Algorithms.";
     }
+}
 
-    public class InitialBehaviour : IInstructorBehaviour
+public class InitialBehaviour : IInstructorBehaviour
+{
+    public string AboutMe()
     {
-        public string AboutMe()
-        {
-            return "This is the default behaviour. Instructor, now, does not teach any subject.";
-        }
+        return "This is the default behaviour. Instructor, now, does not teach any subject.";
     }
+}
 
-    public class Instructor
-    {
-        private IInstructorBehaviour _behaviour;
+public class Instructor
+{
+    private IInstructorBehaviour _behaviour;
         
-        public Instructor()
-        {
-            _behaviour = new InitialBehaviour();
-        }
+    public Instructor()
+    {
+        _behaviour = new InitialBehaviour();
+    }
 
-        public void SerInstructorBehaviour(IInstructorBehaviour behaviour)
-        {
-            _behaviour = behaviour;
-        }
+    public void SerInstructorBehaviour(IInstructorBehaviour behaviour)
+    {
+        _behaviour = behaviour;
+    }
 
-        public string AboutMe()
-        {
-            return _behaviour.AboutMe();
-        }
+    public string AboutMe()
+    {
+        return _behaviour.AboutMe();
     }
 }

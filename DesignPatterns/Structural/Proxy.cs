@@ -16,47 +16,46 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns.Structural
+namespace DesignPatterns.Structural;
+
+public interface ILoginService
 {
-    public interface ILoginService
-    {
-        public string Login();
-    }
+    public string Login();
+}
 
-    public class ConcreteLoginService : ILoginService
+public class ConcreteLoginService : ILoginService
+{
+    public string Login()
     {
-        public string Login()
-        {
-            // Returning a login token
-            return Guid.NewGuid().ToString();
-        }
+        // Returning a login token
+        return Guid.NewGuid().ToString();
     }
+}
 
-    public class LoginServiceProxy : ILoginService
-    {
-        private ILoginService _loginService;
-        private List<string> _users = new List<string>(new string[] { "fredrick", "alejandro", "alfonso", "dominic" });
+public class LoginServiceProxy : ILoginService
+{
+    private ILoginService _loginService;
+    private List<string> _users = new List<string>(new string[] { "fredrick", "alejandro", "alfonso", "dominic" });
         
-        public string CurrentUser { get; set; }
+    public string CurrentUser { get; set; }
 
-        public LoginServiceProxy(string currentUser)
-        {
-            CurrentUser = currentUser;
-        }
+    public LoginServiceProxy(string currentUser)
+    {
+        CurrentUser = currentUser;
+    }
 
-        public string Login()
+    public string Login()
+    {
+        if (_users.Contains(CurrentUser))
         {
-            if (_users.Contains(CurrentUser))
+            if (_loginService is null)
             {
-                if (_loginService is null)
-                {
-                    _loginService = new ConcreteLoginService();
-                }
-
-                return _loginService.Login();
+                _loginService = new ConcreteLoginService();
             }
 
-            return String.Empty;
+            return _loginService.Login();
         }
+
+        return String.Empty;
     }
 }

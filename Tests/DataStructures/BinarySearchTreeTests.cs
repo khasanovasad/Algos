@@ -2,48 +2,47 @@ using System;
 using DataStructures;
 using NUnit.Framework;
 
-namespace Tests.DataStructures
+namespace Tests.DataStructures;
+
+[TestFixture]
+public class BinarySearchTreeTests
 {
-    [TestFixture]
-    public class BinarySearchTreeTests
+    [Test]
+    [Ignore("DUMMY TEST. NEEDS TO BE REWRITTEN")]
+    public void BinarySearchTreeTest()
     {
-        [Test]
-        [Ignore("DUMMY TEST. NEEDS TO BE REWRITTEN")]
-        public void BinarySearchTreeTest()
+        var bst = new BinarySearchTree<int>();
+
+        bst.Insert(8);
+        bst.Insert(3);
+        bst.Insert(10);
+        bst.Insert(1);
+        bst.Insert(6);
+        bst.Insert(4);
+        bst.Insert(7);
+        bst.Insert(14);
+            
+        bst.Inorder(key =>
         {
-            var bst = new BinarySearchTree<int>();
-
-            bst.Insert(8);
-            bst.Insert(3);
-            bst.Insert(10);
-            bst.Insert(1);
-            bst.Insert(6);
-            bst.Insert(4);
-            bst.Insert(7);
-            bst.Insert(14);
+            Console.Write($"{key} ");
+        });
+        Console.WriteLine();
+        bst.Preorder(key =>
+        {
+            Console.Write($"{key} ");
+        });
+        Console.WriteLine();
+        bst.Postorder(key =>
+        {
+            Console.Write($"{key} ");
+        });
             
-            bst.Inorder(key =>
-            {
-                Console.Write($"{key} ");
-            });
-            Console.WriteLine();
-            bst.Preorder(key =>
-            {
-                Console.Write($"{key} ");
-            });
-            Console.WriteLine();
-            bst.Postorder(key =>
-            {
-                Console.Write($"{key} ");
-            });
-            
-            bst.PrintTree();
+        bst.PrintTree();
 
-            bst.Delete(3);
+        bst.Delete(3);
 
-            bst.PrintTree();
+        bst.PrintTree();
 
-            Assert.Fail();
-        }
+        Assert.Fail();
     }
 }

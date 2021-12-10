@@ -17,81 +17,80 @@
 
 using System;
 
-namespace DesignPatterns.Structural
+namespace DesignPatterns.Structural;
+
+public interface IRectangle
 {
-    public interface IRectangle
-    {
-        public double CalculateArea();
-        public string AboutMe();
-    }
+    public double CalculateArea();
+    public string AboutMe();
+}
     
-    public class Rectangle : IRectangle
+public class Rectangle : IRectangle
+{
+    public Rectangle(double length, double width)
     {
-        public Rectangle(double length, double width)
-        {
-            Length = length;
-            Width = width;
-        }
-
-        public double Length { get; set; }
-        public double Width { get; set; }
-        
-        public double CalculateArea()
-        {
-            return Width * Length;
-        }
-
-        public string AboutMe()
-        {
-            return "Actually, this is a rectangle.";
-        }
+        Length = length;
+        Width = width;
     }
+
+    public double Length { get; set; }
+    public double Width { get; set; }
+        
+    public double CalculateArea()
+    {
+        return Width * Length;
+    }
+
+    public string AboutMe()
+    {
+        return "Actually, this is a rectangle.";
+    }
+}
     
-    public interface ITriangle
-    {
-        public double CalculateAreaOfTriangle();
-        public string AboutThisTriangle();
-    }
+public interface ITriangle
+{
+    public double CalculateAreaOfTriangle();
+    public string AboutThisTriangle();
+}
     
-    public class Triangle : ITriangle
+public class Triangle : ITriangle
+{
+    public Triangle(double height, double baseLength)
     {
-        public Triangle(double height, double baseLength)
-        {
-            Height = height;
-            BaseLength = baseLength;
-        }
-
-        public double Height { get; set; }
-        public double BaseLength { get; set; }
-        
-        public double CalculateAreaOfTriangle()
-        {
-            return 0.5 * Height * BaseLength;
-        }
-
-        public string AboutThisTriangle()
-        {
-            return "Actually, this is a triangle.";
-        }
+        Height = height;
+        BaseLength = baseLength;
     }
 
-    public class RectangleAdapter : IRectangle
-    {
-        private ITriangle _triangle;
-
-        public RectangleAdapter(ITriangle triangle)
-        {
-            _triangle = triangle;
-        }
+    public double Height { get; set; }
+    public double BaseLength { get; set; }
         
-        public double CalculateArea()
-        {
-            return _triangle.CalculateAreaOfTriangle();
-        }
+    public double CalculateAreaOfTriangle()
+    {
+        return 0.5 * Height * BaseLength;
+    }
 
-        public string AboutMe()
-        {
-            return _triangle.AboutThisTriangle();
-        }
+    public string AboutThisTriangle()
+    {
+        return "Actually, this is a triangle.";
+    }
+}
+
+public class RectangleAdapter : IRectangle
+{
+    private ITriangle _triangle;
+
+    public RectangleAdapter(ITriangle triangle)
+    {
+        _triangle = triangle;
+    }
+        
+    public double CalculateArea()
+    {
+        return _triangle.CalculateAreaOfTriangle();
+    }
+
+    public string AboutMe()
+    {
+        return _triangle.AboutThisTriangle();
     }
 }

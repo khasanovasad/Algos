@@ -23,111 +23,110 @@
 
 using System;
 
-namespace DesignPatterns.Behavioural
+namespace DesignPatterns.Behavioural;
+
+public interface IPossibleStates
 {
-    public interface IPossibleStates
+    public string PressOnButton(TV context);
+    public string PressOffButton(TV context);
+    public string PressMuteButton(TV context);
+}
+
+public class Off : IPossibleStates
+{
+    public Off()
     {
-        public string PressOnButton(TV context);
-        public string PressOffButton(TV context);
-        public string PressMuteButton(TV context);
+        Console.WriteLine(" --- TV is OFF now. --- ");
     }
 
-    public class Off : IPossibleStates
+    public string PressOnButton(TV context)
     {
-        public Off()
-        {
-            Console.WriteLine(" --- TV is OFF now. --- ");
-        }
-
-        public string PressOnButton(TV context)
-        {
-            context.CurrentState = new On();
-            return $"TV was off. Going from OFF state to ON state.\n";
-        }
-
-        public string PressOffButton(TV context)
-        {
-            return $"TV was off already. No state change.\n";
-        }
-
-        public string PressMuteButton(TV context)
-        {
-            return $"TV is off. No state change.\n";
-        }
+        context.CurrentState = new On();
+        return $"TV was off. Going from OFF state to ON state.\n";
     }
 
-    public class On : IPossibleStates
+    public string PressOffButton(TV context)
     {
-        public On()
-        {
-            Console.WriteLine(" --- TV is ON now. --- ");
-        }
-
-        public string PressOnButton(TV context)
-        {
-            return $"TV was already ON. No state change.\n";
-        }
-
-        public string PressOffButton(TV context)
-        {
-            context.CurrentState = new Off();
-            return $"TV was ON. Going from ON state to OFF state.\n";
-        }
-
-        public string PressMuteButton(TV context)
-        {
-            context.CurrentState = new Mute();
-            return $"TV was ON. Going from ON state to MUTE state.\n";
-        }
+        return $"TV was off already. No state change.\n";
     }
 
-    public class Mute : IPossibleStates
+    public string PressMuteButton(TV context)
     {
-        public Mute()
-        {
-            Console.WriteLine(" --- TV is MUTE now. --- ");
-        }
+        return $"TV is off. No state change.\n";
+    }
+}
 
-        public string PressOnButton(TV context)
-        {
-            context.CurrentState = new On();
-            return $"TV was MUTE. Going from MUTE state to ON state.\n";
-        }
-
-        public string PressOffButton(TV context)
-        {
-            context.CurrentState = new Off();
-            return $"TV was MUTE. Going from MUTE state to OFF state.\n";
-        }
-
-        public string PressMuteButton(TV context)
-        {
-            return $"TV was already MUTE. No state change.\n";
-        }
+public class On : IPossibleStates
+{
+    public On()
+    {
+        Console.WriteLine(" --- TV is ON now. --- ");
     }
 
-    public class TV 
-    { 
-        public IPossibleStates CurrentState { get; set; }
+    public string PressOnButton(TV context)
+    {
+        return $"TV was already ON. No state change.\n";
+    }
 
-        public TV()
-        {
-            CurrentState = new Off();
-        }
+    public string PressOffButton(TV context)
+    {
+        context.CurrentState = new Off();
+        return $"TV was ON. Going from ON state to OFF state.\n";
+    }
 
-        public string ExecuteOnButton()
-        {
-            return CurrentState.PressOnButton(this);
-        }
+    public string PressMuteButton(TV context)
+    {
+        context.CurrentState = new Mute();
+        return $"TV was ON. Going from ON state to MUTE state.\n";
+    }
+}
 
-        public string ExecuteOffButton()
-        {
-            return CurrentState.PressOffButton(this);
-        }
+public class Mute : IPossibleStates
+{
+    public Mute()
+    {
+        Console.WriteLine(" --- TV is MUTE now. --- ");
+    }
 
-        public string ExecuteMuteButton()
-        {
-            return CurrentState.PressMuteButton(this);
-        }
+    public string PressOnButton(TV context)
+    {
+        context.CurrentState = new On();
+        return $"TV was MUTE. Going from MUTE state to ON state.\n";
+    }
+
+    public string PressOffButton(TV context)
+    {
+        context.CurrentState = new Off();
+        return $"TV was MUTE. Going from MUTE state to OFF state.\n";
+    }
+
+    public string PressMuteButton(TV context)
+    {
+        return $"TV was already MUTE. No state change.\n";
+    }
+}
+
+public class TV 
+{ 
+    public IPossibleStates CurrentState { get; set; }
+
+    public TV()
+    {
+        CurrentState = new Off();
+    }
+
+    public string ExecuteOnButton()
+    {
+        return CurrentState.PressOnButton(this);
+    }
+
+    public string ExecuteOffButton()
+    {
+        return CurrentState.PressOffButton(this);
+    }
+
+    public string ExecuteMuteButton()
+    {
+        return CurrentState.PressMuteButton(this);
     }
 }

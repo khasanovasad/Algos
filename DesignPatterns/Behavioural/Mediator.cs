@@ -16,67 +16,66 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesignPatterns.Behavioural
+namespace DesignPatterns.Behavioural;
+
+public interface IMediator
 {
-    public interface IMediator
+    public void Register(Friend friend);
+    public string Send(Friend fromFriend, Friend toFriend, string message);
+    public string DisplayDetails();
+}
+
+public class Mediator : IMediator
+{
+    List<Friend> _participants = new();
+
+    public void Register(Friend friend)
     {
-        public void Register(Friend friend);
-        public string Send(Friend fromFriend, Friend toFriend, string message);
-        public string DisplayDetails();
+        _participants.Add(friend);
     }
 
-    public class Mediator : IMediator
+    public string Send(Friend fromFriend, Friend toFriend, string message)
     {
-        List<Friend> _participants = new();
-
-        public void Register(Friend friend)
+        if (!_participants.Contains(fromFriend) || !_participants.Contains(toFriend))
         {
-            _participants.Add(friend);
+            throw new Exception($"{fromFriend.Name} or {toFriend.Name} is not registered.");
         }
 
-        public string Send(Friend fromFriend, Friend toFriend, string message)
-        {
-            if (!_participants.Contains(fromFriend) || !_participants.Contains(toFriend))
-            {
-                throw new Exception($"{fromFriend.Name} or {toFriend.Name} is not registered.");
-            }
-
-            toFriend.Receive(fromFriend, message);
-            return $"[{fromFriend.Name}] posts: {message}\n";
-        }
-
-        public string DisplayDetails()
-        {
-            var strBuilder = new StringBuilder();
-            strBuilder.Append(" --- Current list of participants: \n\n");
-            foreach (var participant in _participants)
-            {
-                strBuilder.Append(participant.Name).Append('\n');
-            }
-
-            return strBuilder.ToString();
-        }
+        toFriend.Receive(fromFriend, message);
+        return $"[{fromFriend.Name}] posts: {message}\n";
     }
 
-    public class Friend
+    public string DisplayDetails()
     {
-        private IMediator _mediator;
-        public string Name { get; set; }
-
-        public Friend(string name, IMediator mediator) 
+        var strBuilder = new StringBuilder();
+        strBuilder.Append(" --- Current list of participants: \n\n");
+        foreach (var participant in _participants)
         {
-            Name = name;
-            _mediator = mediator; 
+            strBuilder.Append(participant.Name).Append('\n');
         }
+
+        return strBuilder.ToString();
+    }
+}
+
+public class Friend
+{
+    private IMediator _mediator;
+    public string Name { get; set; }
+
+    public Friend(string name, IMediator mediator) 
+    {
+        Name = name;
+        _mediator = mediator; 
+    }
     
-        public string SendMessage(Friend toFriend, string message)
-        {
-            return _mediator.Send(this, toFriend, message);
-        }
+    public string SendMessage(Friend toFriend, string message)
+    {
+        return _mediator.Send(this, toFriend, message);
+    }
 
-        public string Receive(Friend fromFriend, string message)
-        {
-            return $"{Name} has received a message from {fromFriend.Name} saying: {message}";
-        }
+    public string Receive(Friend fromFriend, string message)
+    {
+        return $"{Name} has received a message from {fromFriend.Name} saying: {message}";
     }
 }

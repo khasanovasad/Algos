@@ -19,52 +19,51 @@
 using System;
 using System.Text;
 
-namespace DesignPatterns.Structural
+namespace DesignPatterns.Structural;
+
+public class Subsystem1
 {
-    public class Subsystem1
+    public string Operation1()
     {
-        public string Operation1()
-        {
-            return "Operation1 is completed.";
-        }
+        return "Operation1 is completed.";
+    }
+}
+
+public class Subsystem2
+{
+    public string Operation2()
+    {
+        return "Operation2 is completed.";
+    }
+}
+
+public class Subsystem3
+{
+    public string Operation3()
+    {
+        return "Operation3 is completed.";
+    }
+}
+
+public class SystemFacade
+{
+    private Subsystem1 _subsystem1;
+    private Subsystem2 _subsystem2;
+    private Subsystem3 _subsystem3;
+
+    public SystemFacade(Subsystem1 subsystem1 = null, Subsystem2 subsystem2 = null, Subsystem3 subsystem3 = null)
+    {
+        _subsystem1 = subsystem1 ?? new Subsystem1(); ;
+        _subsystem2 = subsystem2 ?? new Subsystem2(); ;
+        _subsystem3 = subsystem3 ?? new Subsystem3(); ;
     }
 
-    public class Subsystem2
+    public string Operation()
     {
-        public string Operation2()
-        {
-            return "Operation2 is completed.";
-        }
-    }
-
-    public class Subsystem3
-    {
-        public string Operation3()
-        {
-            return "Operation3 is completed.";
-        }
-    }
-
-    public class SystemFacade
-    {
-        private Subsystem1 _subsystem1;
-        private Subsystem2 _subsystem2;
-        private Subsystem3 _subsystem3;
-
-        public SystemFacade(Subsystem1 subsystem1 = null, Subsystem2 subsystem2 = null, Subsystem3 subsystem3 = null)
-        {
-            _subsystem1 = subsystem1 ?? new Subsystem1(); ;
-            _subsystem2 = subsystem2 ?? new Subsystem2(); ;
-            _subsystem3 = subsystem3 ?? new Subsystem3(); ;
-        }
-
-        public string Operation()
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("{0}\n", _subsystem1.Operation1());
-            stringBuilder.AppendFormat("{0}\n", _subsystem2.Operation2());
-            stringBuilder.AppendFormat("{0}\n", _subsystem3.Operation3());
-            return stringBuilder.ToString();
-        }
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendFormat("{0}\n", _subsystem1.Operation1());
+        stringBuilder.AppendFormat("{0}\n", _subsystem2.Operation2());
+        stringBuilder.AppendFormat("{0}\n", _subsystem3.Operation3());
+        return stringBuilder.ToString();
     }
 }

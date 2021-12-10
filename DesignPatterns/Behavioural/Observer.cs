@@ -19,237 +19,236 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace DesignPatterns.Behavioural
+namespace DesignPatterns.Behavioural;
+
+#region MANUAL_IMPLEMENTATION
+public interface IObserver
 {
-    #region MANUAL_IMPLEMENTATION
-    public interface IObserver
+    public void Update(Celebrity subject);
+}
+
+public class Observer1 : IObserver
+{
+    public string Name { get; set; }
+
+    public Observer1(string name)
     {
-        public void Update(Celebrity subject);
+        Name = name;
     }
 
-    public class Observer1 : IObserver
+    public void Update(Celebrity subject)
     {
-        public string Name { get; set; }
+        Console.WriteLine($"{Name} notified. Inside {subject.Name}, the updated value is {subject.Flag}.");
+    }
+}
 
-        public Observer1(string name)
+public class Observer2 : IObserver
+{
+    public string Name { get; set; }
+
+    public Observer2(string name)
+    {
+        Name = name;
+    }
+
+    public void Update(Celebrity subject)
+    {
+        Console.WriteLine($"{Name} has received an alert from {subject.Name}. Update value is {subject.Flag}.");
+    }
+}
+
+public abstract class Celebrity
+{
+    protected List<IObserver> _observersList = new();
+    public string Name { get; }
+
+    private int _flag;
+    public int Flag 
+    {
+        get
         {
-            Name = name;
+            return _flag;
         }
-
-        public void Update(Celebrity subject)
+        set
         {
-            Console.WriteLine($"{Name} notified. Inside {subject.Name}, the updated value is {subject.Flag}.");
+            _flag = value;
+            NotifyRegisteredUsers();
         }
     }
 
-    public class Observer2 : IObserver
+    public Celebrity(string name)
     {
-        public string Name { get; set; }
-
-        public Observer2(string name)
-        {
-            Name = name;
-        }
-
-        public void Update(Celebrity subject)
-        {
-            Console.WriteLine($"{Name} has received an alert from {subject.Name}. Update value is {subject.Flag}.");
-        }
+        Name = name; 
     }
 
-    public abstract class Celebrity
-    {
-        protected List<IObserver> _observersList = new();
-        public string Name { get; }
+    public abstract void Register(IObserver observer);
+    public abstract void Unregister(IObserver observer);
+    public abstract void NotifyRegisteredUsers();
+}
 
-        private int _flag;
-        public int Flag 
+public class Celebrity1 : Celebrity
+{
+    public Celebrity1(string name) : base(name) { }
+
+    public override void Register(IObserver observer)
+    {
+        base._observersList.Add(observer);
+    }
+
+    public override void Unregister(IObserver observer)
+    {
+        base._observersList.Remove(observer);
+    }
+
+    public override void NotifyRegisteredUsers()
+    {
+        foreach (var observer in base._observersList)
         {
-            get
+            observer.Update(this);
+        }
+    }
+}
+#endregion
+
+#region IMPLEMENTAION_USING_BCL_TYPES
+/// 
+/// Complete explanation at <https://docs.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern>
+/// 
+
+/// DATA
+public class Temperature
+{
+    private decimal _temp;
+    private DateTime _date;
+
+    public decimal Degrees => _temp;
+    public DateTime Date => _date;
+
+    public Temperature(decimal temperature, DateTime dateTime)
+    { 
+        _temp = temperature;
+        _date = dateTime;
+    }
+}
+
+/// PROVIDER
+public class TemperatureMonitor : IObservable<Temperature>
+{
+    private List<IObserver<Temperature>> _observers = new();
+
+    private class Unsubscriber : IDisposable
+    {
+        private List<IObserver<Temperature>> _observers;
+        private IObserver<Temperature> _observer;
+
+        public Unsubscriber(List<IObserver<Temperature>> observers, IObserver<Temperature> observer)
+        {
+            this._observers = observers;
+            this._observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observer is not null)
             {
-                return _flag;
+                _observers.Remove(_observer);
             }
-            set
-            {
-                _flag = value;
-                NotifyRegisteredUsers();
-            }
-        }
-
-        public Celebrity(string name)
-        {
-            Name = name; 
-        }
-
-        public abstract void Register(IObserver observer);
-        public abstract void Unregister(IObserver observer);
-        public abstract void NotifyRegisteredUsers();
-    }
-
-    public class Celebrity1 : Celebrity
-    {
-        public Celebrity1(string name) : base(name) { }
-
-        public override void Register(IObserver observer)
-        {
-            base._observersList.Add(observer);
-        }
-
-        public override void Unregister(IObserver observer)
-        {
-            base._observersList.Remove(observer);
-        }
-
-        public override void NotifyRegisteredUsers()
-        {
-            foreach (var observer in base._observersList)
-            {
-                observer.Update(this);
-            }
-        }
-    }
-    #endregion
-
-    #region IMPLEMENTAION_USING_BCL_TYPES
-    /// 
-    /// Complete explanation at <https://docs.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern>
-    /// 
-
-    /// DATA
-    public class Temperature
-    {
-        private decimal _temp;
-        private DateTime _date;
-
-        public decimal Degrees => _temp;
-        public DateTime Date => _date;
-
-        public Temperature(decimal temperature, DateTime dateTime)
-        { 
-            _temp = temperature;
-            _date = dateTime;
         }
     }
 
-    /// PROVIDER
-    public class TemperatureMonitor : IObservable<Temperature>
+    public IDisposable Subscribe(IObserver<Temperature> observer)
     {
-        private List<IObserver<Temperature>> _observers = new();
-
-        private class Unsubscriber : IDisposable
+        if (!_observers.Contains(observer))
         {
-            private List<IObserver<Temperature>> _observers;
-            private IObserver<Temperature> _observer;
+            _observers.Add(observer);
+        }
+        return new Unsubscriber(_observers, observer);
+    }
 
-            public Unsubscriber(List<IObserver<Temperature>> observers, IObserver<Temperature> observer)
-            {
-                this._observers = observers;
-                this._observer = observer;
-            }
+    public void GetTemperature()
+    {
+        // Create an array of sample data to mimic a temperature device.
+        decimal?[] temps = { 14.6m, 14.65m, 14.7m, 14.9m, 14.9m, 15.2m, 15.25m, 15.2m, 15.4m, 15.45m, null };
+        // Store the previous temperature, so notification is only sent after at least .1 change.
+        decimal? previous = null;
+        bool start = true;
 
-            public void Dispose()
+        foreach (var temp in temps)
+        {
+            Thread.Sleep(2500);
+            if (temp.HasValue)
             {
-                if (_observer is not null)
+                if (start || (Math.Abs(temp.Value - previous.Value) >= 0.1m))
                 {
-                    _observers.Remove(_observer);
-                }
-            }
-        }
-
-        public IDisposable Subscribe(IObserver<Temperature> observer)
-        {
-            if (!_observers.Contains(observer))
-            {
-                _observers.Add(observer);
-            }
-            return new Unsubscriber(_observers, observer);
-        }
-
-        public void GetTemperature()
-        {
-            // Create an array of sample data to mimic a temperature device.
-            decimal?[] temps = { 14.6m, 14.65m, 14.7m, 14.9m, 14.9m, 15.2m, 15.25m, 15.2m, 15.4m, 15.45m, null };
-            // Store the previous temperature, so notification is only sent after at least .1 change.
-            decimal? previous = null;
-            bool start = true;
-
-            foreach (var temp in temps)
-            {
-                Thread.Sleep(2500);
-                if (temp.HasValue)
-                {
-                    if (start || (Math.Abs(temp.Value - previous.Value) >= 0.1m))
+                    var tempData = new Temperature(temp.Value, DateTime.Now);
+                    foreach (var observer in _observers)
                     {
-                        var tempData = new Temperature(temp.Value, DateTime.Now);
-                        foreach (var observer in _observers)
-                        {
-                            observer.OnNext(tempData);
-                        }
-
-                        previous = temp;
-                        if (start)
-                        {
-                            start = false;
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var observer in _observers.ToArray())
-                    {
-                        if (observer is not null)
-                        {
-                            observer.OnCompleted();
-                        }
+                        observer.OnNext(tempData);
                     }
 
-                    _observers.Clear();
-                    break;
+                    previous = temp;
+                    if (start)
+                    {
+                        start = false;
+                    }
                 }
-            }
-        }
-    }
-
-    /// OBSERVER
-    public class TemperatureReport : IObserver<Temperature>
-    {
-        private IDisposable _unsubscriber;
-        private bool _first = true;
-        private Temperature _last;
-
-        public virtual void Subscribe(IObservable<Temperature> provider)
-        {
-            _unsubscriber = provider.Subscribe(this); 
-        }
-
-        public virtual void Unsubscribe()
-        {
-            _unsubscriber.Dispose();
-        }
-
-        public virtual void OnCompleted()
-        {
-            Console.WriteLine("Additional temperature data will not be transmitted.");
-        }
-
-        public virtual void OnError(Exception exception)
-        {
-            // Nothing here 
-        }
-
-        public virtual void OnNext(Temperature temperature)
-        {
-            Console.WriteLine($"The temperature is {temperature.Degrees}C at {temperature.Date}");
-            if (_first)
-            {
-                _last = temperature;
-                _first = false;
             }
             else
             {
-                Console.WriteLine($"     Change {temperature.Degrees - _last.Degrees} in {temperature.Date.ToUniversalTime() - _last.Date.ToUniversalTime()}");
+                foreach (var observer in _observers.ToArray())
+                {
+                    if (observer is not null)
+                    {
+                        observer.OnCompleted();
+                    }
+                }
+
+                _observers.Clear();
+                break;
             }
         }
     }
-    #endregion
 }
+
+/// OBSERVER
+public class TemperatureReport : IObserver<Temperature>
+{
+    private IDisposable _unsubscriber;
+    private bool _first = true;
+    private Temperature _last;
+
+    public virtual void Subscribe(IObservable<Temperature> provider)
+    {
+        _unsubscriber = provider.Subscribe(this); 
+    }
+
+    public virtual void Unsubscribe()
+    {
+        _unsubscriber.Dispose();
+    }
+
+    public virtual void OnCompleted()
+    {
+        Console.WriteLine("Additional temperature data will not be transmitted.");
+    }
+
+    public virtual void OnError(Exception exception)
+    {
+        // Nothing here 
+    }
+
+    public virtual void OnNext(Temperature temperature)
+    {
+        Console.WriteLine($"The temperature is {temperature.Degrees}C at {temperature.Date}");
+        if (_first)
+        {
+            _last = temperature;
+            _first = false;
+        }
+        else
+        {
+            Console.WriteLine($"     Change {temperature.Degrees - _last.Degrees} in {temperature.Date.ToUniversalTime() - _last.Date.ToUniversalTime()}");
+        }
+    }
+}
+#endregion

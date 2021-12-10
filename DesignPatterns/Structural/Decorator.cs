@@ -19,76 +19,75 @@
 
 using System;
 
-namespace DesignPatterns.Structural
+namespace DesignPatterns.Structural;
+
+public abstract class AbstractHouse
 {
-    public abstract class AbstractHouse
+    public int AdditionalValue { get; set; }
+    public abstract string MakeHouse();
+}
+
+public class ConcreteHouse : AbstractHouse
+{
+    public ConcreteHouse() { }
+
+    public override string MakeHouse()
     {
-        public int AdditionalValue { get; set; }
-        public abstract string MakeHouse();
+        return "House is constructed. It's price is: $10,000";
+    }
+}
+
+public abstract class AbstractHouseDecorator : AbstractHouse
+{
+    protected AbstractHouse House;
+
+    public AbstractHouseDecorator(AbstractHouse house)
+    {
+        House = house;
     }
 
-    public class ConcreteHouse : AbstractHouse
+    public override string MakeHouse()
     {
-        public ConcreteHouse() { }
+        return House.MakeHouse();
+    }
+}
 
-        public override string MakeHouse()
-        {
-            return "House is constructed. It's price is: $10,000";
-        }
+public class FloorDecorator : AbstractHouseDecorator
+{
+    public FloorDecorator(AbstractHouse house) : base(house)
+    {
+        this.AdditionalValue = 2500;
     }
 
-    public abstract class AbstractHouseDecorator : AbstractHouse
+    public override string MakeHouse()
     {
-        protected AbstractHouse House;
-
-        public AbstractHouseDecorator(AbstractHouse house)
-        {
-            House = house;
-        }
-
-        public override string MakeHouse()
-        {
-            return House.MakeHouse();
-        }
+        var result = this.House.MakeHouse();
+        result = String.Concat(result, "\n", AddFloor());
+        return result;
     }
 
-    public class FloorDecorator : AbstractHouseDecorator
+    public string AddFloor()
     {
-        public FloorDecorator(AbstractHouse house) : base(house)
-        {
-            this.AdditionalValue = 2500;
-        }
-
-        public override string MakeHouse()
-        {
-            var result = this.House.MakeHouse();
-            result = String.Concat(result, "\n", AddFloor());
-            return result;
-        }
-
-        public string AddFloor()
-        {
-            return $" -- Added one more floor. Pay additional {this.AdditionalValue}";
-        }
+        return $" -- Added one more floor. Pay additional {this.AdditionalValue}";
     }
+}
     
-    public class PaintDecorator : AbstractHouseDecorator
+public class PaintDecorator : AbstractHouseDecorator
+{
+    public PaintDecorator(AbstractHouse house) : base(house)
     {
-        public PaintDecorator(AbstractHouse house) : base(house)
-        {
-            this.AdditionalValue = 1000;
-        }
+        this.AdditionalValue = 1000;
+    }
 
-        public override string MakeHouse()
-        {
-            var result = this.House.MakeHouse();
-            result = String.Concat(result, "\n", AddFloor());
-            return result;
-        }
+    public override string MakeHouse()
+    {
+        var result = this.House.MakeHouse();
+        result = String.Concat(result, "\n", AddFloor());
+        return result;
+    }
 
-        public string AddFloor()
-        {
-            return $"    --- Repainted the house. Pay additional {this.AdditionalValue}";
-        }
+    public string AddFloor()
+    {
+        return $"    --- Repainted the house. Pay additional {this.AdditionalValue}";
     }
 }

@@ -1,47 +1,46 @@
 ﻿using System;
 
-namespace DataStructures
+namespace DataStructures;
+
+public class Queue<T>
 {
-    public class Queue<T>
+    private LinkedList<T> _data = new LinkedList<T>();
+
+    public int Count { get { return _data.Count;  } }
+        
+    public bool IsEmpty { get { return _data.Count == 0; } }
+        
+    public Queue() { }
+
+    public void Clear()
     {
-        private LinkedList<T> _data = new LinkedList<T>();
+        _data.Clear();
+    }
 
-        public int Count { get { return _data.Count;  } }
+    public bool Contains(T item)
+    {
+        return _data.Contains(item);
+    }
         
-        public bool IsEmpty { get { return _data.Count == 0; } }
-        
-        public Queue() { }
-
-        public void Clear()
+    public T Dequeue()
+    {
+        if (IsEmpty)
         {
-            _data.Clear();
+            throw new Exception("Attempt to dequeue from empty queue.");
         }
-
-        public bool Contains(T item)
-        {
-            return _data.Contains(item);
-        }
-        
-        public T Dequeue()
-        {
-            if (IsEmpty)
-            {
-                throw new Exception("Attempt to dequeue from empty queue.");
-            }
             
-            T element = _data.Head.Data;
-            _data.RemoveFirst();
-            return element;
-        }
+        T element = _data.Head.Data;
+        _data.RemoveFirst();
+        return element;
+    }
 
-        public void Enqueue(T item)
-        {
-            _data.AddLast(item);
-        }
+    public void Enqueue(T item)
+    {
+        _data.AddLast(item);
+    }
 
-        public T[] ToArray()
-        {
-            return _data.ToArray();
-        }
+    public T[] ToArray()
+    {
+        return _data.ToArray();
     }
 }

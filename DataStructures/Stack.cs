@@ -1,46 +1,45 @@
 using System;
 
-namespace DataStructures
+namespace DataStructures;
+
+public class Stack<T>
 {
-    public class Stack<T>
+    private LinkedList<T> _data = new LinkedList<T>();
+
+    public int Count { get { return _data.Count; } }
+    public bool IsEmpty { get { return Count == 0; } }
+
+    public Stack() { }
+
+    public void Push(T item)
     {
-        private LinkedList<T> _data = new LinkedList<T>();
+        _data.AddLast(item);
+    }
 
-        public int Count { get { return _data.Count; } }
-        public bool IsEmpty { get { return Count == 0; } }
-
-        public Stack() { }
-
-        public void Push(T item)
+    public T Pop()
+    {
+        if (IsEmpty)
         {
-            _data.AddLast(item);
+            throw new Exception("Attempt to pop from empty stack.");
         }
 
-        public T Pop()
-        {
-            if (IsEmpty)
-            {
-                throw new Exception("Attempt to pop from empty stack.");
-            }
+        T data = _data.Tail.Data;
+        _data.RemoveLast();
+        return data;
+    }
 
-            T data = _data.Tail.Data;
-            _data.RemoveLast();
-            return data;
-        }
+    public void Clear()
+    {
+        _data.Clear();
+    }
 
-        public void Clear()
-        {
-            _data.Clear();
-        }
+    public bool Contains(T item)
+    {
+        return _data.Contains(item);
+    }
 
-        public bool Contains(T item)
-        {
-            return _data.Contains(item);
-        }
-
-        public T[] ToArray()
-        {
-            return _data.ToArray();
-        }
+    public T[] ToArray()
+    {
+        return _data.ToArray();
     }
 }

@@ -2,17 +2,16 @@
 using NUnit.Framework;
 using DesignPatterns.Behavioural;
 
-namespace Tests.DesignPatterns.Behavioural
+namespace Tests.DesignPatterns.Behavioural;
+
+[TestFixture]
+public class ObserverTests
 {
-    [TestFixture]
-    public class ObserverTests
+    [Test]
+    [Ignore("NO TEST HERE CURRENTLY.")]
+    public void Observer_Test()
     {
-        [Test]
-        [Ignore("NO TEST HERE CURRENTLY.")]
-        public void Observer_Test()
-        {
-            /// I can't think of any way to test the Observable Pattern
-            Assert.Fail();
-        }
+        /// I can't think of any way to test the Observable Pattern
+        Assert.Fail();
     }
 }

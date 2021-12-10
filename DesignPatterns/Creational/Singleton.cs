@@ -17,26 +17,25 @@
 
 using System;
 
-namespace DesignPatterns.Creational
+namespace DesignPatterns.Creational;
+
+public class Singleton
 {
-    public class Singleton
+    private static Singleton _instance = null;
+
+    private Singleton() 
     {
-        private static Singleton _instance = null;
+    }
 
-        private Singleton() 
+    public static Singleton Instance
+    {
+        get 
         {
-        }
-
-        public static Singleton Instance
-        {
-            get 
+            if (_instance is null)
             {
-                if (_instance is null)
-                {
-                    _instance = new Singleton();
-                }
-                return _instance;
+                _instance = new Singleton();
             }
+            return _instance;
         }
     }
 }

@@ -1,75 +1,74 @@
 using System;
 using System.Collections.Generic;
 
-namespace Algorithms.LeetCode.Easy
+namespace Algorithms.LeetCode.Easy;
+
+public sealed partial class Solution
 {
-    public sealed partial class Solution
+    /// O(n^2) time | O(1) space
+    public int[] TwoSum1(int[] nums, int target)
     {
-        /// O(n^2) time | O(1) space
-        public int[] TwoSum1(int[] nums, int target)
+        for (int i = 0; i < nums.Length; ++i)
         {
-            for (int i = 0; i < nums.Length; ++i)
+            for (int j = i + 1; j < nums.Length; ++j)
             {
-                for (int j = i + 1; j < nums.Length; ++j)
+                if (nums[i] + nums[j] == target)
                 {
-                    if (nums[i] + nums[j] == target)
-                    {
-                        return new int[] { i, j };
-                    }
+                    return new int[] { i, j };
                 }
             }
-
-            return new int[] { };
         }
 
-        /// O (nlogn) time | O(1) space
-        public int[] TwoSum2(int[] nums, int target)
+        return new int[] { };
+    }
+
+    /// O (nlogn) time | O(1) space
+    public int[] TwoSum2(int[] nums, int target)
+    {
+        Array.Sort<int>(nums);
+
+        int left = 0;
+        int right = nums.Length - 1;
+        while (left != right)
         {
-            Array.Sort<int>(nums);
+            int currentSum = nums[left] + nums[right];
 
-            int left = 0;
-            int right = nums.Length - 1;
-            while (left != right)
+            if (currentSum == target)
             {
-                int currentSum = nums[left] + nums[right];
-
-                if (currentSum == target)
-                {
-                    return new int[] { left, right };
-                }
-                else if (currentSum < target)
-                {
-                    ++left;
-                }
-                else if (currentSum > target)
-                {
-                    --right;
-                }
+                return new int[] { left, right };
             }
+            else if (currentSum < target)
+            {
+                ++left;
+            }
+            else if (currentSum > target)
+            {
+                --right;
+            }
+        }
             
-            return new int[] { };
-        }
+        return new int[] { };
+    }
 
-        /// O (n) time | O(n) space
-        public int[] TwoSum3(int[] nums, int target)
+    /// O (n) time | O(n) space
+    public int[] TwoSum3(int[] nums, int target)
+    {
+        var map = new Dictionary<int, int>();
+
+        for (int i = 0; i < nums.Length; ++i)
         {
-            var map = new Dictionary<int, int>();
-
-            for (int i = 0; i < nums.Length; ++i)
+            if (map.ContainsKey(nums[i]))
             {
-                if (map.ContainsKey(nums[i]))
-                {
-                    return new int[] { map[nums[i]], i };
-                }
+                return new int[] { map[nums[i]], i };
+            }
                 
-                try
-                {
-                    map.Add(target - nums[i], i);
-                }
-                catch {} // ignore
+            try
+            {
+                map.Add(target - nums[i], i);
             }
-            
-            return new int[] { };
+            catch {} // ignore
         }
+            
+        return new int[] { };
     }
 }

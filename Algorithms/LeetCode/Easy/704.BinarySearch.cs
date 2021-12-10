@@ -1,44 +1,43 @@
 using System;
 using System.Collections.Generic;
 
-namespace Algorithms.LeetCode.Easy
+namespace Algorithms.LeetCode.Easy;
+
+public sealed partial class Solution
 {
-    public sealed partial class Solution
+    public int Search(int[] nums, int target)
     {
-        public int Search(int[] nums, int target)
+        int left = 0;
+        int count = 0;  
+        int right = nums.Length;
+        int mid = (left + right) / 2;
+            
+        if (nums[0] == target) 
         {
-            int left = 0;
-            int count = 0;  
-            int right = nums.Length;
-            int mid = (left + right) / 2;
+            return 0;
+        }
             
-            if (nums[0] == target) 
+        while (target != nums[mid] && nums.Length / 2 >= count)
+        {
+            if (target > nums[mid]) 
             {
-                return 0;
-            }
-            
-            while (target != nums[mid] && nums.Length / 2 >= count)
-            {
-                if (target > nums[mid]) 
-                {
-                    left = mid;
-                }
-                else
-                {
-                    right = mid;
-                }
-                mid = (left + right) / 2;
-                ++count;
-            }
-            
-            if (count > nums.Length / 2)
-            {
-                return -1;
+                left = mid;
             }
             else
             {
-                return mid;
+                right = mid;
             }
+            mid = (left + right) / 2;
+            ++count;
+        }
+            
+        if (count > nums.Length / 2)
+        {
+            return -1;
+        }
+        else
+        {
+            return mid;
         }
     }
 }
