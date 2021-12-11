@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorthms.LeetCode.Easy;
+namespace Algorithms.LeetCode.Easy;
 
 /// Defition of a binary tree
 public class TreeNode
