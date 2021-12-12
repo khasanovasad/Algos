@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Algorithms.Misc;
 
-public static class GreedyKnapsack
+public static class FractionalKnapsack
 {
     private class Item
     {

@@ -5,16 +5,16 @@ using NUnit.Framework;
 namespace Tests.Algorithms.Misc;
 
 [TestFixture]
-public class GreedyKnapsackTests
+public class FractionalKnapsackTests
 {
     [Test]
-    public void GreedyKnapsackTest()
+    public void Calculate_Should_When()
     {
         const int maxWeight = 50;
         var values = new int[] { 60, 100, 120 };
         var weights = new int[] { 10, 20, 30 };
 
-        var result = GreedyKnapsack.Calculate(values, weights, maxWeight);
+        var result = FractionalKnapsack.Calculate(values, weights, maxWeight);
 
         Assert.AreEqual(240, result);
     }
