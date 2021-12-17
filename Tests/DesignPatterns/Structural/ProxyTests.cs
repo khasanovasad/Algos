@@ -1,4 +1,8 @@
-﻿namespace Tests.DesignPatterns.Structural;
+﻿using System;
+using DesignPatterns.Structural;
+using NUnit.Framework;
+
+namespace Tests.DesignPatterns.Structural;
 
 [TestFixture]
 public class ProxyTests

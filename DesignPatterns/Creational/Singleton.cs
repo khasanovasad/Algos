@@ -15,6 +15,8 @@
  * your needs. By following this approach, you can avoid creating unnecessary objects.
  */
 
+using System;
+
 namespace DesignPatterns.Creational;
 
 public class Singleton

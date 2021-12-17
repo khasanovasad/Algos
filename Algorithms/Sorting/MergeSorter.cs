@@ -1,4 +1,6 @@
-﻿namespace Algorithms.Sorting;
+﻿using System;
+
+namespace Algorithms.Sorting;
 
 public static class MergeSorter
 {

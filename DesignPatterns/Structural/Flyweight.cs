@@ -45,6 +45,9 @@
  * passing the extrinsic state to the flyweight when it needs it.
  */
 
+using System;
+using System.Collections.Generic;
+
 namespace DesignPatterns.Structural;
 
 public interface IVehicle

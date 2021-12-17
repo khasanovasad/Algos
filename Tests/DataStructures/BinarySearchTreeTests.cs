@@ -1,3 +1,7 @@
+using System;
+using DataStructures;
+using NUnit.Framework;
+
 namespace Tests.DataStructures;
 
 [TestFixture]

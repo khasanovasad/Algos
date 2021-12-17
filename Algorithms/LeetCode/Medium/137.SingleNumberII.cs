@@ -1,4 +1,7 @@
-﻿namespace Algorithms.LeetCode.Medium;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Algorithms.LeetCode.Medium;
 
 public sealed partial class Solution
 {

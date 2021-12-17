@@ -1,4 +1,7 @@
-﻿namespace DataStructures;
+﻿using System;
+using System.Collections.Generic;
+
+namespace DataStructures;
 
 // Probably the worst hash table written ever
 public class Dictionary<TKey, TValue>

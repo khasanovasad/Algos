@@ -1,4 +1,10 @@
-﻿namespace Tests.DesignPatterns.Structural;
+﻿using System;
+using NUnit.Framework;
+using DesignPatterns.Structural;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Tests.DesignPatterns.Structural;
 
 [TestFixture]
 public class FlyweightTests

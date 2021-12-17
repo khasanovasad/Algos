@@ -1,4 +1,10 @@
-﻿namespace Tests.DesignPatterns.Structural;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using DesignPatterns.Structural;
+
+namespace Tests.DesignPatterns.Structural;
 
 [TestFixture]
 public class AdapterTests
@@ -10,7 +16,7 @@ public class AdapterTests
         const double areaToCover = 100000;
         const double hundredKMs = 100;
 
-        var rectangles = new System.Collections.Generic.List<IRectangle>();
+        var rectangles = new List<IRectangle>();
         double totalAreCovered = 0;
         int currentNumberOfRectangles = 0;
 

@@ -11,6 +11,8 @@
  * different representations of the objects.
  */
 
+using System;
+
 namespace DesignPatterns.Creational;
 
 public class UserObject

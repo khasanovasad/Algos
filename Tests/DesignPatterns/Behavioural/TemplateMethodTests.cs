@@ -1,4 +1,8 @@
-﻿namespace Tests.DesignPatterns.Behavioural;
+﻿using System;
+using NUnit.Framework;
+using DesignPatterns.Behavioural;
+
+namespace Tests.DesignPatterns.Behavioural;
 
 [TestFixture]
 public class TemplateMethodTests

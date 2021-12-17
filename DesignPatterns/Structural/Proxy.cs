@@ -13,6 +13,9 @@
  * interface to the original one.
 */
 
+using System;
+using System.Collections.Generic;
+
 namespace DesignPatterns.Structural;
 
 public interface ILoginService

@@ -1,4 +1,7 @@
-﻿namespace Tests.DataStructures;
+﻿using DataStructures;
+using NUnit.Framework;
+
+namespace Tests.DataStructures;
 
 [TestFixture]
 public class DictionaryTests

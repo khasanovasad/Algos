@@ -1,4 +1,6 @@
-﻿namespace Algorithms.Misc;
+﻿using System;
+
+namespace Algorithms.Misc;
 
 public static class ZeroOneKnapsack
 {

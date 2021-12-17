@@ -21,6 +21,8 @@
  * you can centralize the task, segregate your code, and respond accordingly. 
  */
 
+using System;
+
 namespace DesignPatterns.Behavioural;
 
 public interface IPossibleStates

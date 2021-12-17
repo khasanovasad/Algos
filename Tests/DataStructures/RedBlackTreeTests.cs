@@ -1,4 +1,8 @@
-﻿namespace Tests.DataStructures;
+﻿using System;
+using DataStructures;
+using NUnit.Framework;
+
+namespace Tests.DataStructures;
 
 [TestFixture]
 public class RedBlackTreeTests

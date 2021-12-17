@@ -1,4 +1,9 @@
-﻿namespace Tests.DesignPatterns.Behavioural;
+﻿using System;
+using NUnit.Framework;
+using DesignPatterns.Behavioural;
+using System.Text;
+
+namespace Tests.DesignPatterns.Behavioural;
 
 [TestFixture]
 public class StateTests

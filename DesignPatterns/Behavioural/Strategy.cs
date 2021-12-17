@@ -17,6 +17,8 @@
  * vehicle. The overall implementation can make the concept clearer to you.
  */
 
+using System;
+
 namespace DesignPatterns.Behavioural;
 
 public interface IInstructorBehaviour

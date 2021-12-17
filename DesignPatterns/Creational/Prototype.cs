@@ -15,6 +15,9 @@
  * object by asking a prototype to clone itself.
  */
 
+using System;
+using System.Collections.Generic;
+
 namespace DesignPatterns.Creational;
 
 public class SourceFile

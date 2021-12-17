@@ -16,6 +16,9 @@
  * concentrate on what he needs to. 
  */
 
+using System;
+using System.Text;
+
 namespace DesignPatterns.Structural;
 
 public class Subsystem1

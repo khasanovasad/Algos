@@ -1,3 +1,6 @@
+using DesignPatterns.Creational;
+using NUnit.Framework;
+
 namespace Tests.DesignPatterns.Creational;
 
 [TestFixture]

@@ -1,4 +1,8 @@
-﻿namespace Tests.DesignPatterns.Structural;
+﻿using System;
+using NUnit.Framework;
+using DesignPatterns.Structural;
+
+namespace Tests.DesignPatterns.Structural;
 
 [TestFixture]
 public class FacadeTests
