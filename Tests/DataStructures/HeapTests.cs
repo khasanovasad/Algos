@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using DataStructures;
-using NUnit.Framework;
-
-namespace Tests.DataStructures;
+﻿namespace Tests.DataStructures;
 
 [TestFixture]
 public class HeapTests
@@ -12,7 +8,7 @@ public class HeapTests
     [Test]
     public void Heap_ToArray_Should_Return_Items_Sorted_With_Custom_Comparer()
     {
-        var customComparer = Comparer<Contender>.Create((a, b) => Comparer<int>.Default.Compare(a.Rank, b.Rank));
+        var customComparer = System.Collections.Generic.Comparer<Contender>.Create((a, b) => System.Collections.Generic.Comparer<int>.Default.Compare(a.Rank, b.Rank));
         var heap = new Heap<Contender>(isMaxHeap: false, comparer: customComparer);
 
         heap.Insert(new Contender(Name: "Benjamin Franklin", Rank: 2));

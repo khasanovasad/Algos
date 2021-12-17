@@ -1,5 +1,3 @@
-using System;
-
 namespace Algorithms.Sorting;
 
 public static class BubbleSorter

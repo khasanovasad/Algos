@@ -17,8 +17,6 @@
  * in a later phase of development, because the original object may still work.
  */
 
-using System;
-
 namespace DesignPatterns.Structural;
 
 public abstract class AbstractHouse

@@ -1,5 +1,3 @@
-using System;
-
 namespace Algorithms.Misc;
 
 /// Problem represented in Section 15.1 of CLRS book

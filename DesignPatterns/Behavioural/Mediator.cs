@@ -12,10 +12,6 @@
  * coupling in an application. 
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace DesignPatterns.Behavioural;
 
 public interface IMediator

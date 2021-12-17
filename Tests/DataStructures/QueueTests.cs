@@ -1,8 +1,4 @@
-﻿using System;
-using DataStructures;
-using NUnit.Framework;
-
-namespace Tests.DataStructures;
+﻿namespace Tests.DataStructures;
 
 [TestFixture]
 public class QueueTests

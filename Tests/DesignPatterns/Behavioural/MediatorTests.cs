@@ -1,9 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using DesignPatterns.Behavioural;
-using System.Text;
-
-namespace Tests.DesignPatterns.Behavioural;
+﻿namespace Tests.DesignPatterns.Behavioural;
 
 [TestFixture]
 public class MediatorTests

@@ -15,8 +15,6 @@
  * enjoy the updated software without any hassle.
  */
 
-using System;
-
 namespace DesignPatterns.Structural;
 
 public interface IRectangle

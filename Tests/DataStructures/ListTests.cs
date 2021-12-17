@@ -1,9 +1,4 @@
-﻿using System;
-using DataStructures;
-using NUnit.Framework;
-using Collections = System.Collections.Generic;
-
-namespace Tests.DataStructures;
+﻿namespace Tests.DataStructures;
 
 [TestFixture]
 public class ListTests
@@ -11,7 +6,7 @@ public class ListTests
     [Test]
     public void List_Ctor()
     {
-        var list = new List<int>(0, Collections.Comparer<int>.Default);
+        var list = new List<int>(0, System.Collections.Generic.Comparer<int>.Default);
         list.TrimExcess();
         Assert.AreEqual(4, list.Capacity);
         Assert.AreEqual(0, list.Count);

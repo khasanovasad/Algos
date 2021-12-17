@@ -1,8 +1,4 @@
-﻿using System;
-using DesignPatterns.Structural;
-using NUnit.Framework;
-
-namespace Tests.DesignPatterns.Structural;
+﻿namespace Tests.DesignPatterns.Structural;
 
 public class DecoratorTests
 {

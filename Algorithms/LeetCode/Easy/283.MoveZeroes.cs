@@ -1,5 +1,3 @@
-using System;
-
 namespace Algorithms.LeetCode.Easy;
 
 public sealed partial class Solution

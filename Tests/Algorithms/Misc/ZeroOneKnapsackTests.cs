@@ -1,8 +1,4 @@
-﻿using System;
-using Algorithms.Misc;
-using NUnit.Framework;
-
-namespace Tests.Algorithms.Misc;
+﻿namespace Tests.Algorithms.Misc;
 
 [TestFixture]
 public class ZeroOneKnapsackTests

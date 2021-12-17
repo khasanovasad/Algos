@@ -1,8 +1,4 @@
-﻿using System;
-using DesignPatterns.Creational;
-using NUnit.Framework;
-
-namespace Tests.DesignPatterns.Creational;
+﻿namespace Tests.DesignPatterns.Creational;
 
 [TestFixture]
 public class PrototypeTests

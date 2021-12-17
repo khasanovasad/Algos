@@ -14,11 +14,6 @@
  * specific actions based upon the notification. 
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-
 namespace DesignPatterns.Behavioural;
 
 #region MANUAL_IMPLEMENTATION

@@ -1,0 +1,11 @@
+﻿global using System;
+global using System.Text;
+global using System.Linq;
+global using NUnit.Framework;
+global using Algorithms.Misc;
+global using Algorithms.Sorting;
+global using Algorithms.LeetCode;
+global using DataStructures;
+global using DesignPatterns.Behavioural;
+global using DesignPatterns.Creational;
+global using DesignPatterns.Structural;
