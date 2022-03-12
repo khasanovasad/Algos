@@ -2,10 +2,10 @@
 
 namespace Algorithms.Algoexpert.Easy;
 
-public partial class Solution
+public class SortedSquaredArray
 {
     /// O(n * log(n)) time | O(n) space
-    public int[] SortedSquaredArray1(int[] array)
+    public int[] Solution1(int[] array)
     {
         var result = new int[array.Length];
 
@@ -19,7 +19,7 @@ public partial class Solution
     }
 
     /// O(n) time | O(n) space
-    public int[] SortedSquaredArray2(int[] array)
+    public int[] Solution2(int[] array)
     {
         var result = new int[array.Length];
         int start = 0;

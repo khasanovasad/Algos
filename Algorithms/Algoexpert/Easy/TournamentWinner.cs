@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Algorithms.Algoexpert.Easy;
 
-public partial class Solution
+public class TournamentWinner
 {
     /// O(n) time | O(k) space where k is the number of teams
-    public string TournamentWinner(List<List<string>> competitions, List<int> results)
+    public string Solution(List<List<string>> competitions, List<int> results)
     {
         const int HOME_TEAM_WON = 1;
         const int POINTS = 3;

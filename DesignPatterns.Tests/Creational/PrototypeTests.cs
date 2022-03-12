@@ -2,7 +2,7 @@
 using DesignPatterns.Creational;
 using NUnit.Framework;
 
-namespace Tests.DesignPatterns.Creational;
+namespace DesignPatterns.Tests.Creational;
 
 [TestFixture]
 public class PrototypeTests

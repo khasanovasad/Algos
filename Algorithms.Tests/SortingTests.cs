@@ -3,7 +3,7 @@ using System.Linq;
 using Algorithms.Sorting;
 using NUnit.Framework;
 
-namespace Tests.Algorithms;
+namespace Algorithms.Test;
 
 [TestFixture]
 public class SortingTests

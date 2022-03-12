@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Algorithms.Algoexpert.Easy;
 
-public partial class Solution
+public class TwoSum
 {
     /// O(n^2) time | O(1) space
-    public int[] TwoSum1(int[] nums, int target)
+    public int[] Solution1(int[] nums, int target)
     {
         for (int i = 0; i < nums.Length; ++i)
         {
@@ -23,7 +23,7 @@ public partial class Solution
     }
 
     /// O (nlogn) time | O(1) space
-    public int[] TwoSum2(int[] nums, int target)
+    public int[] Solution2(int[] nums, int target)
     {
         Array.Sort<int>(nums);
 

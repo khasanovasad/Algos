@@ -4,7 +4,7 @@ using DesignPatterns.Structural;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tests.DesignPatterns.Structural;
+namespace DesignPatterns.Tests.Structural;
 
 [TestFixture]
 public class FlyweightTests

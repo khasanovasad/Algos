@@ -2,10 +2,10 @@
 
 namespace Algorithms.Algoexpert.Easy;
 
-public partial class Solution
+public class ValidateSubsequence
 {
     /// O(n) time | O(1) space
-    public bool IsValidSequence(List<int> array, List<int> sequence)
+    public bool Solution(List<int> array, List<int> sequence)
     {
         int seqIdx = 0;
         for (int i = 0; i < array.Count; ++i)

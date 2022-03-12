@@ -2,7 +2,7 @@
 using DesignPatterns.Structural;
 using NUnit.Framework;
 
-namespace Tests.DesignPatterns.Structural;
+namespace DesignPatterns.Tests.Structural;
 
 public class DecoratorTests
 {

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using DesignPatterns.Structural;
 
-namespace Tests.DesignPatterns.Structural;
+namespace DesignPatterns.Tests.Structural;
 
 [TestFixture]
 public class FacadeTests

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using DesignPatterns.Behavioural;
 
-namespace Tests.DesignPatterns.Behavioural;
+namespace DesignPatterns.Tests.Behavioural;
 
 [TestFixture]
 public class TemplateMethodTests

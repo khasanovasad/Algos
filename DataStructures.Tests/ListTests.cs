@@ -3,7 +3,7 @@ using DataStructures;
 using NUnit.Framework;
 using Collections = System.Collections.Generic;
 
-namespace Tests.DataStructures;
+namespace DataStructures.Tests;
 
 [TestFixture]
 public class ListTests

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using DesignPatterns.Behavioural;
 using System.Text;
 
-namespace Tests.DesignPatterns.Behavioural;
+namespace DesignPatterns.Tests.Behavioural;
 
 [TestFixture]
 public class StateTests

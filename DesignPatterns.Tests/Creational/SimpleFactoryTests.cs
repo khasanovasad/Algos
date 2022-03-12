@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 using DesignPatterns.Creational;
 
-namespace Tests.DesignPatterns.Creational;
+namespace DesignPatterns.Tests.Creational;
 
 [TestFixture]
 public class SimpleFactoryTests

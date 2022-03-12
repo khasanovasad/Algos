@@ -2,7 +2,7 @@ using System;
 using Algorithms.Misc;
 using NUnit.Framework;
 
-namespace Tests.Algorithms.Misc;
+namespace Algorithms.Tests.Misc;
 
 [TestFixture]
 public class FractionalKnapsackTests

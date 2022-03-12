@@ -2,7 +2,7 @@
 using DataStructures;
 using NUnit.Framework;
 
-namespace Tests.DataStructures;
+namespace DataStructures.Tests;
 
 [TestFixture]
 public class RedBlackTreeTests
